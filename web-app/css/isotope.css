@@ -842,6 +842,97 @@ code .nd { color: #9FAD7E; } /* CSS pseudo selector */
 .clearfix { zoom: 1; }
 
 body{
+		color: #555;
         padding-top: 60px;
         padding-bottom: 40px;
+}
+.tituloNoticia{
+	width:85%;
+}
+.trendsMenu, .searchMenu{
+	text-align: center;
+}
+
+.form-search{
+	margin-top:10px;
+}
+.navbar-basketnews{
+	background-color: #FB4;
+	color: #000;
+}
+.fechaNoticia{
+	position: absolute;
+	bottom:0;
+	right: 0;
+}
+.tagsNoticia{
+	position: absolute;
+	bottom:25px;
+	right: 0;
+}
+.basket-ribbon a {
+	background: #FFCC66;
+	color: #fff;
+	text-decoration: none;
+	font-family: arial, sans-serif;
+	text-align: center;
+	font-weight: bold;
+	padding: 5px 50px;
+	font-size: 0.7rem;
+	line-height: 1.5rem;
+	position: relative;
+	transition: 0.5s;
+}
+.ACB-ribbon a {
+	background: #0099FF;
+}
+.Marca-ribbon a {
+	background: red;
+}
+.Gigantes-ribbon a {
+	background-color: #CF0000;
+}
+.Solobasket-ribbon a {
+	background: #888888;
+}
+.basket-ribbon a:hover {
+	background: #060;
+	color: #fff;
+}
+
+.basket-ribbon a::before,.basket-ribbon a::after {
+	content: "";
+	width: 100%;
+	display: block;
+	position: absolute;
+	top: 1px;
+	left: 0;
+	height: 1px;
+	background: #fff;
+}
+
+.basket-ribbon a::after {
+	bottom: 1px;
+	top: auto;
+}
+
+@media screen and (min-width:800px) {
+	.basket-ribbon {
+		position: absolute;
+		display: block;
+		top: 0;
+		right: 0;
+		width: 100px;
+		overflow: hidden;
+		height: 100px;
+	}
+	.basket-ribbon a {
+		width: 100px;
+		position: absolute;
+		top: 10px;
+		right: -70px;
+		transform: rotate(45deg);
+		-webkit-transform: rotate(45deg);
+		box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.8);
+	}
 }

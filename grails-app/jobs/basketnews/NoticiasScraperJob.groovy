@@ -10,7 +10,7 @@ class NoticiasScraperJob {
 	def concurrent = false
 	
     static triggers = {
-      simple repeatInterval: 60000 // execute job once in 5 seconds
+      simple repeatInterval: 60000 // execute job each minute
     }
 
     def execute() {
@@ -67,6 +67,40 @@ class NoticiasScraperJob {
 		   }
 	   }
 	   
+	   
+	   def noticiasNuevasMarca = Noticia.findAllWhere(paginaWeb:'Marca', titulo:null)
+	   noticiasNuevasMarca.each { noticia ->
+		   Browser.drive {
+			   
+			   go "${noticia.url}"
+			   noticia.titulo = $('div.cab_articulo h1').text()
+			//   noticia.subtitulo = $('div.new-body div.body').text()
+			//   noticia.tags = $('li.tag a').text()
+			   noticia.save(flush:true)
+			   if(!noticia.titulo)
+			   {
+				   noticia.delete(flush:true)
+			   }
+			   log.info "Noticia ${noticia.url} actualizada"
+		   }
+	   }
+	   
+	   def noticiasNuevasAdeccoOro = Noticia.findAllWhere(paginaWeb:'AdeccoOro', titulo:null)
+	   noticiasNuevasAdeccoOro.each { noticia ->
+		   Browser.drive {
+			   
+			   go "${noticia.url}"
+			   noticia.titulo = $('h1.titulo').text()
+			   noticia.subtitulo = $('div.entradilla').text()
+			//   noticia.tags = $('li.tag a').text()
+			   noticia.save(flush:true)
+			   if(!noticia.titulo)
+			   {
+				   noticia.delete(flush:true)
+			   }
+			   log.info "Noticia ${noticia.url} actualizada"
+		   }
+	   }
 	   log.info 'Scraper - Escaneo finalizado'
     }
 }

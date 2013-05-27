@@ -3,14 +3,14 @@ package es.kaylan.basket
 import geb.Page
 import groovy.lang.MetaClass;
 
-class ACBHomePage extends Page {
+class AdeccoOroHomePage extends Page {
 
 // pages can define their location, either absolutely or relative to a base
-	static url = "http://www.acb.com/"
+	static url = "http://www.adeccooro.es/noticias.aspx"
  
 	static content = {
 	
-        news { $("div.ultimas_notis a") }
+        news { $("h2.titulo a") }
        
 	}
 	

@@ -9,7 +9,7 @@ class NoticiasCrawlerJob {
 	def concurrent = false
 	
     static triggers = {
-      simple  startDelay: 10000, repeatInterval: 100000 // execute job once in 5 seconds
+      simple  startDelay: 10000, repeatInterval: 900000 
     }
 
     def execute() {
@@ -18,7 +18,8 @@ class NoticiasCrawlerJob {
 			   go "http://localhost:8080/basketnews/acb"
 			   go "http://localhost:8080/basketnews/tuBasket"
 			   go "http://localhost:8080/basketnews/solobasket"
-			   go "http://localhost:8080/basketnews/gigantes"
+			   go "http://localhost:8080/basketnews/marca"
+			   go "http://localhost:8080/basketnews/adeccoOro"
 			   log.info 'Crawler - Escaneo completado'
 		   }
     }

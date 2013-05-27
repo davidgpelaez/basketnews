@@ -2,14 +2,11 @@ package basketnews
 
 import java.awt.GraphicsConfiguration.DefaultBufferCapabilities;
 
-
-
-
 class AgruparNoticiasJob {
 	def concurrent = false
 	def mongo
 
-	static triggers = { simple repeatInterval: 20000 // execute job once in 5 seconds
+	static triggers = { simple repeatInterval: 60000 
 	}
 
 	def keywords = [
@@ -19,28 +16,26 @@ class AgruparNoticiasJob {
 		'endesa',
 		'eurocup',
 		'euroleague',
-		'euroliga'
+		'euroliga',
+		'playoff',
+		'playoffs',
+		'final',
+		'finales',
+		'semifinal',
+		'semifinales',
+		'mock',
+		'ascenso',
+		'descenso',
+		'fichaje',
+		'fichajes',
+		'traspaso'
+		
 	]
+	
+	def IGNORE_WORDS = ['A','No','Un', 'Uno', 'Una', 'Unos', 'Unas', 'Lo', 'El', 'La', 'Los', 'Las', 'Y', 'Es', 'Son', 'Sin', 'Real', 'Hay']
 
 	def execute() {
-		// Buscar noticias de los últimos dos días, sacar palabras clave, buscar candidatos y agrupar
-		def db = mongo.getDB('basketnews')
-		def not = db.noticia.find([:],[tags:1,_id:0])
-
-		def tagCloud = [:]
-		not.each{ 
-			it['tags'].each{ tagTerms ->
-				if(tagCloud[tagTerms])
-				{
-					tagCloud[tagTerms]=tagCloud[tagTerms]+1
-				}
-				else{
-					tagCloud[tagTerms]=1
-				}
-			}
-		}
-		//Remover preposiciones
-		println tagCloud
+		
 		def noticias = Noticia.findAllWhere(tags:null)
 		noticias.each { noticia ->
 			noticia.tags = calculateTags(noticia)
@@ -52,11 +47,23 @@ class AgruparNoticiasJob {
 	def calculateTags(Noticia noticia){
 		if(noticia.titulo)
 		{
-			noticia.tags = noticia.titulo.split(' ').findAll {
-				Character.isUpperCase(it.charAt(0)) || keywords.contains(it)
+			def tituloSplitted = noticia.titulo.split(' ')
+			tituloSplitted = tituloSplitted.collect{
+				it.replaceAll("[\\.|'|,|:|\"|\\?]", "")
+			}
+			
+			noticia.tags = tituloSplitted.findAll {
+				
+				(it && Character.isUpperCase(it.charAt(0)) && isImportantWord(it)) || keywords.contains(it)
 			}
 			noticia.save(flush: true)
 			println noticia.tags
 		}
 	}
+	
+	def isImportantWord(def word){
+		!IGNORE_WORDS.contains(word)
+	}
+	
+
 }

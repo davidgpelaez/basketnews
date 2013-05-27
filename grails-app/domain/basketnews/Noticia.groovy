@@ -23,5 +23,6 @@ class Noticia {
 		url index:true
 		titulo index:true
 		paginaWeb index:true
+		sort fechaDeteccion: "desc"
 	}
 }
