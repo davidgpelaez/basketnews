@@ -97,3 +97,8 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+
+grails.plugin.cloudfoundry.target = 'api.cloudfoundry.com'
+grails.plugin.cloudfoundry.username = 'david.gomez.pelaez@gmail.com'
+grails.plugin.cloudfoundry.password = 'password'

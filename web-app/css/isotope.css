@@ -846,8 +846,13 @@ body{
         padding-top: 60px;
         padding-bottom: 40px;
 }
+
 .tituloNoticia{
+	margin-top:30px;
 	width:85%;
+}
+.tag-filter{
+	cursor:pointer;
 }
 .trendsMenu, .searchMenu{
 	text-align: center;
@@ -898,6 +903,16 @@ body{
 .basket-ribbon a:hover {
 	background: #060;
 	color: #fff;
+}
+.favIcon{
+	position:absolute;
+	top:0;
+	left:0;
+}
+.leido{
+	position:absolute;
+	top:0;
+	left:40px;
 }
 
 .basket-ribbon a::before,.basket-ribbon a::after {

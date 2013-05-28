@@ -8,6 +8,8 @@ class EstadisticasController {
 		
 		def db = mongo.getDB('basketnews')
 		def noticiasGroup = db.noticia.aggregate([$group:[_id:'$paginaWeb', noticias:[$sum:1]]])
-		[noticiasGroup: noticiasGroup]
+		def noticiasLeidas = db.noticia.aggregate([$group:[_id:'$paginaWeb', leidas:[$sum:'$hits']]])
+
+		[noticiasGroup: noticiasGroup, noticiasLeidas: noticiasLeidas]
 	}
 }

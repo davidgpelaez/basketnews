@@ -17,19 +17,43 @@
 	<body>
 	<div class="navbar navbar-inverse navbar-fixed-top navbar-basketnews">
       <div class="navbar-inner">
-        <div class="container-fluid">
+        <div class="container-fluid" >
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
           <a class="brand" href="#">BasketNews</a>
-         	<div class="btn-group" id="filters">
+
+				<div class="btn-group ">
+					<button class="btn btn-primary">Noticias</button>
+					<button class="btn dropdown-toggle btn-primary" data-toggle="dropdown">
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a href="#myModal" role="button" data-toggle="modal">Personalizar</a></li>
+					</ul>
+				</div>
+
+				<div class="btn-group">
+					<button class="btn btn-primary">Estadísticas</button>
+					<button class="btn dropdown-toggle btn-primary" data-toggle="dropdown">
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a href="#">Noticias por página</a></li>
+						<li><a href="#">Noticias más visitadas</a></li>
+						<li><a href="#">Trendings</a></li>
+					</ul>
+				</div>
+
+			
+				<div class="btn-group" id="filters">
 					<button class="btn btn-filter" data-filter="*">Todas</button>
 					<button class="btn btn-filter" data-filter=".ACB">ACB.com</button>
 					<button class="btn btn-filter" data-filter=".TuBasket">TuBasket</button>
 					<button class="btn btn-filter" data-filter=".Solobasket">Solobasket</button>
-					<button class="btn btn-filter" data-filter=".Piratas">PiratasDelBasket</button>
+					<button class="btn btn-filter" data-filter=".AdeccoOro">AdeccoOro</button>
 					<button class="btn btn-filter" data-filter=".Marca">Marca</button>
 				</div>
         </div>

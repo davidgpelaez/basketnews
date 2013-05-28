@@ -15,9 +15,12 @@
 		colors['Solobasket']="blue";
 		colors['ACB']="orange";
 		colors['AdeccoOro']="yellow";
-
+		var leidas = new Array();
+		<g:each in="${noticiasLeidas.results()}" var="leidas">
+			leidas["${leidas['_id']}"] = ${leidas['leidas']};
+		</g:each>
 		
-       var data = [
+       var dataNoticias = [
 				<g:each in="${noticiasGroup.results()}" var="group">
 				{
 					value: ${group['noticias']}, 
@@ -25,7 +28,17 @@
 				}, 
 				</g:each>
                ]
-    
+
+	var dataLeidas = {labels : ["TuBasket","ACB.com","Solobasket","Marca","Adecco Oro"],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,1)",
+				data : [leidas['TuBasket'],leidas['ACB'],leidas['Solobasket'],leidas['Marca'],leidas['AdeccoOro']]
+			}
+		]
+	}
+
 </script>
 </head>
 <body>
@@ -40,6 +53,7 @@
 		</ul>
 	</div>
 	<div class="row-fluid">	
+	<canvas id="myChart2" width="400" height="400"></canvas>
 	
 	</div>
 	

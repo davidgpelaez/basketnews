@@ -37,10 +37,14 @@
 		<div id="news">
 
 			<g:each in="${noticias}">
-				<div class="element ${it.paginaWeb}"  data-web="${it.paginaWeb}">
-				<!-- <span><a class="btn btn-mini" href="#"><i class="icon-star"></i>Fav</a></span> -->	
+				<div class="element ${it.paginaWeb}
+				<g:each in="${it.tags}" var="tag"> ${tag}  </g:each>
+				"  data-web="${it.paginaWeb}">
+				<span class="favIcon"><a class="btn btn-mini" href="#"><i class="icon-star"></i></a></span>	
+				<span class="leido">Leído ${it.hits?:0} veces</span>
+				
 					<span class="basket-ribbon ${it.paginaWeb}-ribbon"><a href="#">${it.paginaWeb}</a></span>
-					<g:link url="${it.url}">
+					<g:link url="${it.url}" class="enlaceNoticia" target="_blank"> 
 						<h2 class="tituloNoticia">
 							${it.titulo}
 						</h2>
@@ -59,6 +63,33 @@
 		</div>
 	</div>
 	
+	<div class="modal hide fade" id="myModal" role="dialog">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">&times;</button>
+			<h2>Noticias a la carta!</h2>
+		</div>
+		<div class="modal-body">
+			<form>
+				<fieldset>
+					<h3>Selecciona tus fuentes</h3>
+					<label class="checkbox"> <input type="checkbox"> TuBasket </label>
+					<label class="checkbox"> <input type="checkbox"> ACB.com </label>
+					<label class="checkbox"> <input type="checkbox"> Solobasket </label>
+					<label class="checkbox"> <input type="checkbox"> Marca </label>
+					<label class="checkbox"> <input type="checkbox"> AdeccoOro </label>
+					<hr />
+					<h3>Además de esto...¿algún tema en particular?</h3>
+   					<input type="text" placeholder="Draft Navarro Lebron ...">
+   					<label class="checkbox"> <input type="checkbox"> Enviarme email diario con estas noticias </label>
+					
+				</fieldset>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn">Cancelar</a> <a href="#" class="btn btn-primary">Guardar</a>
+		</div>
+	</div>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
 	
 	<script src="${resource(dir:'js',file:'jqcloud-1.0.4.min.js') }"></script>

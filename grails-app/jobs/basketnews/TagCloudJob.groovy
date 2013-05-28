@@ -12,7 +12,8 @@ class TagCloudJob {
     def execute() {
       // Buscar noticias de los últimos dos días, sacar palabras clave, buscar candidatos y agrupar
 		def db = mongo.getDB('basketnews')
-		def not = db.noticia.find([:],[tags:1,_id:0])
+	
+		def not = db.noticia.find([fechaDeteccion:[$gte:new Date()-2]],[tags:1,_id:0])
 
 		def tagCloud = [:]
 		
@@ -35,7 +36,10 @@ class TagCloudJob {
 		}
 		Date fechaTagCloud = new Date()
 		tagCloud.each { key, value ->
-			new TagCloud(fecha:fechaTagCloud, tag: key, repeticiones:Integer.valueOf(value), isLast:true).save(flush:true)
+			//Guardamos tags que aparezcan más de una vez, por no recargar y porque los que aparecen una vez la mayoría son basuuura
+			if(1<Integer.valueOf(value)){
+				new TagCloud(fecha:fechaTagCloud, tag: key, repeticiones:Integer.valueOf(value), isLast:true).save(flush:true)
+			}
 			
 		}
 		

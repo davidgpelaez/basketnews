@@ -18,4 +18,18 @@ class HomeController {
 		[noticias: noticias, tagCloud: tagCloud]
 		
 	}
+	
+	def count(){
+		def url = params.noticia
+		def noticia = Noticia.findByUrl(url)
+		if(noticia.hits){
+			noticia.hits+=1
+		}
+		else{
+			noticia.hits=1
+		}
+		noticia.save(flush:true)
+		
+		render "$noticia.hits"
+	}
 }
