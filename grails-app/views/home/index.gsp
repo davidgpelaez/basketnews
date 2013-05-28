@@ -23,24 +23,7 @@
 </head>
 <body>
 	<div class="row-fluid">
-		<div class="span6">
-			<div class="searchMenu">
-				<h2>Busca y filtra a tu gusto</h2>
-				<div class="btn-group" id="filters">
-					<button class="btn btn-filter" data-filter="*">Todas</button>
-					<button class="btn btn-filter" data-filter=".ACB">ACB.com</button>
-					<button class="btn btn-filter" data-filter=".TuBasket">TuBasket</button>
-					<button class="btn btn-filter" data-filter=".Solobasket">Solobasket</button>
-					<button class="btn btn-filter" data-filter=".Piratas">PiratasDelBasket</button>
-					<button class="btn btn-filter" data-filter=".Marca">Marca</button>
-				</div>
-				<form class="form-search">
-					<input type="text" class="input-medium search-query">
-					<button type="submit" class="btn">Buscar</button>
-				</form>
-			</div>
-		</div>
-		<div class="span6">
+		<div class="span12">
 		<div class="trendsMenu">
 			<h2>Trending in the news</h2>
 			<div id="tagCloud"
@@ -75,6 +58,15 @@
 			
 		</div>
 	</div>
-
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+	
+	<script src="${resource(dir:'js',file:'jqcloud-1.0.4.min.js') }"></script>
+	<script src="${resource(dir:'js',file:'jquery.isotope.min.js') }"></script>
+	<script src="${resource(dir:'js',file:'Chart.min.js') }"></script>
+	<script src="${resource(dir:'js',file:'application.js') }"></script>
+		
+	<script src="${resource(dir:'js',file:'bootstrap.min.js') }"></script>
+	<script src="${resource(dir:'js',file:'home.js') }"></script>
 </body>
 </html>

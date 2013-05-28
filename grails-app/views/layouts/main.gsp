@@ -24,20 +24,21 @@
             <span class="icon-bar"></span>
           </button>
           <a class="brand" href="#">BasketNews</a>
-         
+         	<div class="btn-group" id="filters">
+					<button class="btn btn-filter" data-filter="*">Todas</button>
+					<button class="btn btn-filter" data-filter=".ACB">ACB.com</button>
+					<button class="btn btn-filter" data-filter=".TuBasket">TuBasket</button>
+					<button class="btn btn-filter" data-filter=".Solobasket">Solobasket</button>
+					<button class="btn btn-filter" data-filter=".Piratas">PiratasDelBasket</button>
+					<button class="btn btn-filter" data-filter=".Marca">Marca</button>
+				</div>
         </div>
       </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container">
 		<g:layoutBody />
 	
-			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
-		
-		<script src="${resource(dir:'js',file:'jqcloud-1.0.4.min.js') }"></script>
-		<script src="${resource(dir:'js',file:'jquery.isotope.min.js') }"></script>
-		<script src="${resource(dir:'js',file:'application.js') }"></script>
-		<script src="${resource(dir:'js',file:'bootstrap.min.js') }"></script>
 	</div>
 	</body>
 </html>
