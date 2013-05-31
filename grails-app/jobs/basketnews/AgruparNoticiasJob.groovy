@@ -32,7 +32,7 @@ class AgruparNoticiasJob {
 		
 	]
 	
-	def IGNORE_WORDS = ['A','No','Un', 'Uno', 'Una', 'Unos', 'Unas', 'Lo', 'El', 'La', 'Los', 'Las', 'Y', 'Es', 'Son', 'Sin', 'Real', 'Hay']
+	def IGNORE_WORDS = ['Por','Para','A','No','Un', 'Uno', 'Una', 'Unos', 'Unas', 'Lo', 'El', 'La', 'Los', 'Las', 'Y', 'Es', 'Son', 'Sin', 'Real', 'Hay', 'LA','PRENSA', 'DICE']
 
 	def execute() {
 		

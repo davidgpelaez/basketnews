@@ -8,6 +8,7 @@ import basketnews.Noticia
 class NoticiasScraperJob {
 	
 	def concurrent = false
+//	def elasticSearchService
 	
     static triggers = {
       simple repeatInterval: 60000 // execute job each minute
@@ -23,8 +24,18 @@ class NoticiasScraperJob {
 			   noticia.titulo = $('div.tituloreal').text()
 			   noticia.subtitulo = $('div.entradillaarticulo').text()
 			//   noticia.tags = $('meta', 'http-equiv': 'keywords').@content.split(",")
-			   noticia.save(flush:true)
-			   log.info 'Noticia ${noticia.url} actualizada'
+			   if(noticia.titulo)
+			   {
+				   noticia.save(flush:true)
+			//	   elasticSearchService.indexarNoticia(noticia.url, noticia.paginaWeb, noticia.titulo, $('div.cuerpoarticulo').text())
+			//	   sleep(2000)
+				   log.info "Noticia ${noticia.url} actualizada"
+			   }
+			   else{
+				   noticia.delete(flush:true)
+				   log.info "Noticia ${noticia.url} eliminada, parece que ya no existe"
+			   }
+			  
 		   }
 	   }
 	   
@@ -36,8 +47,10 @@ class NoticiasScraperJob {
 			   noticia.titulo = $('article.new-body h1').text()
 			   noticia.subtitulo = $('article.new-body div.body').text()
 			  // noticia.tags = $('meta', 'http-equiv': 'keywords').@content.split(",")
+			 //  elasticSearchService.indexarNoticia(noticia.url, noticia.paginaWeb, noticia.titulo, $('article.new-body div.body').text())
+			//   sleep(2000)
 			   noticia.save(flush:true)
-			   log.info 'Noticia ${noticia.url} actualizada'
+			   log.info "Noticia ${noticia.url} actualizada"
 		   }
 	   }
 	   
@@ -49,6 +62,7 @@ class NoticiasScraperJob {
 			   noticia.titulo = $('h1.titulo a').text()
 			//   noticia.subtitulo = $('div.new-body div.body').text()
 			 //  noticia.tags = $('meta', 'http-equiv': 'keywords').@content.split(",")
+		
 			   noticia.save(flush:true)
 			   log.info "Noticia ${noticia.url} actualizada"
 		   }
@@ -61,7 +75,7 @@ class NoticiasScraperJob {
 			   go "${noticia.url}"
 			   noticia.titulo = $('h1.title').text()
 			//   noticia.subtitulo = $('div.new-body div.body').text()
-			//   noticia.tags = $('li.tag a').text()
+
 			   noticia.save(flush:true)
 			   log.info "Noticia ${noticia.url} actualizada"
 		   }
@@ -75,7 +89,7 @@ class NoticiasScraperJob {
 			   go "${noticia.url}"
 			   noticia.titulo = $('div.cab_articulo h1').text()
 			//   noticia.subtitulo = $('div.new-body div.body').text()
-			//   noticia.tags = $('li.tag a').text()
+
 			   noticia.save(flush:true)
 			   if(!noticia.titulo)
 			   {
@@ -92,7 +106,26 @@ class NoticiasScraperJob {
 			   go "${noticia.url}"
 			   noticia.titulo = $('h1.titulo').text()
 			   noticia.subtitulo = $('div.entradilla').text()
-			//   noticia.tags = $('li.tag a').text()
+			//   elasticSearchService.indexarNoticia(noticia.url, noticia.paginaWeb, noticia.titulo, noticia.subtitulo)
+			//   sleep(2000)
+			   noticia.save(flush:true)
+			   if(!noticia.titulo)
+			   {
+				   noticia.delete(flush:true)
+			   }
+			   log.info "Noticia ${noticia.url} actualizada"
+		   }
+	   }
+	   
+	   def noticiasNuevasPiratas = Noticia.findAllWhere(paginaWeb:'Piratas', titulo:null)
+	   noticiasNuevasPiratas.each { noticia ->
+		   Browser.drive {
+			   
+			   go "${noticia.url}"
+			   noticia.titulo = $('h2.contentheading a').text().toLowerCase().capitalize()
+			   noticia.subtitulo = $('div.article-content b').text()
+			 //  elasticSearchService.indexarNoticia(noticia.url, noticia.paginaWeb, noticia.titulo, noticia.subtitulo)
+			 //  sleep(2000)
 			   noticia.save(flush:true)
 			   if(!noticia.titulo)
 			   {

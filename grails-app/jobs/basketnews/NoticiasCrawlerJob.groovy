@@ -17,6 +17,7 @@ class NoticiasCrawlerJob {
 			   log.info 'Crawler - Escaneo iniciado'
 			   go "http://localhost:8080/basketnews/acb"
 			   go "http://localhost:8080/basketnews/tuBasket"
+			   go "http://localhost:8080/basketnews/piratas"
 			   go "http://localhost:8080/basketnews/solobasket"
 			   go "http://localhost:8080/basketnews/marca"
 			   go "http://localhost:8080/basketnews/adeccoOro"

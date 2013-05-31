@@ -1,4 +1,4 @@
-grails.servlet.version = "2.5" // Change depending on target container compliance (2.5 or 3.0)
+grails.servlet.version = "3.0" // Change depending on target container compliance (2.5 or 3.0)
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
@@ -43,11 +43,14 @@ grails.project.dependency.resolution = {
 		}
 		compile("org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion")
 		compile("org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion")
+		
+		runtime "org.elasticsearch:elasticsearch:0.90.0"
+        runtime "org.elasticsearch:elasticsearch-lang-groovy:1.4.0"
+
+		runtime "org.apache.solr:solr-solrj:4.3.0"
     }
 
     plugins {
-        runtime ":hibernate:$grailsVersion"
-        runtime ":jquery:1.8.0"
         runtime ":resources:1.1.6"
 	
         // Uncomment these (or add new ones) to enable additional resources capabilities

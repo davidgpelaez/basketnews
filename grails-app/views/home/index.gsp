@@ -31,9 +31,23 @@
 		</div>
 		</div>
 	</div>
-	<div class="row-fluid">	
-	
+	<div class="row-fluid">
 		
+		<div class="btn-group center" id="filters">
+			<button class="btn btn-filter" data-filter="*">Todas</button>
+			<button class="btn btn-filter" data-filter=".ACB">ACB.com</button>
+			<button class="btn btn-filter" data-filter=".AdeccoOro">AdeccoOro</button>
+			<button class="btn btn-filter" data-filter=".Marca">Marca</button>
+			<button class="btn btn-filter" data-filter=".Piratas">Piratas</button>
+			<button class="btn btn-filter" data-filter=".Solobasket">Solobasket</button>
+			<button class="btn btn-filter" data-filter=".TuBasket">TuBasket</button>
+
+		</div>
+		<div class="form-search">
+		  <input type="text" class="input-medium search-query"  id="search" name="search" placeholder="Busca noticias..." >
+		   <button class="btn" id="searchButton" type="button">Buscar!</button>
+		</div>
+	
 		<div id="news">
 
 			<g:each in="${noticias}">

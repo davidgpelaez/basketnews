@@ -4,6 +4,16 @@ $(function(){
         itemSelector: '.element'
       });
       
+      $('#searchButton').click(function(){
+    	  $.ajax({
+    		  type: "GET",
+    		  url: "http://localhost:8080/basketnews/home/search",
+    		  data: { texto: $('#search').val()}
+    		}).done(function( msg ) {
+    		  alert(msg);
+    		});
+    	});
+
       
       $('.btn-filter').click(function(){
     	  var selector = $(this).attr('data-filter');

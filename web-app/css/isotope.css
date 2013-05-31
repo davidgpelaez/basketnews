@@ -123,18 +123,15 @@ ul, ol {
 
 a,
 a code {
-  color: #FB4;
   text-decoration: none;
 }
 
 a:hover,
 a:hover code { 
-  color: #4BF; 
 }
 
 a:active,
 a:active code {
-  color: #1FB;
   background: black;
 }
 
@@ -174,6 +171,7 @@ body {
   background:#eee;
   padding: 8px;
   color: #000;
+  opacity: 0.8;
   -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
           border--radius: 5px;
@@ -842,6 +840,7 @@ code .nd { color: #9FAD7E; } /* CSS pseudo selector */
 .clearfix { zoom: 1; }
 
 body{
+	background: url('../images/prueba.jpg') no-repeat;
 		color: #555;
         padding-top: 60px;
         padding-bottom: 40px;
@@ -914,7 +913,9 @@ body{
 	top:0;
 	left:40px;
 }
-
+.center{
+	text-align: center;
+}
 .basket-ribbon a::before,.basket-ribbon a::after {
 	content: "";
 	width: 100%;
@@ -931,6 +932,18 @@ body{
 	top: auto;
 }
 
+.containerGrafico{
+	opacity: 0.8;
+}
+.containerGrafico ul{
+	margin-top: 150px;
+}
+.grafico {
+	float: right;
+}
+.leyendaGrafico{
+	list-style: none;
+}
 @media screen and (min-width:800px) {
 	.basket-ribbon {
 		position: absolute;

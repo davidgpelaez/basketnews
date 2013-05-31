@@ -8,7 +8,10 @@ class GigantesController {
 
 	def index() {
 		Browser.drive {
-			to GigantesHomePage
+			go "http://www.gigantes.com"
+			$('h1.titulo').each {
+				log.info "${it.html()}"
+			}
 			news.each{
 				if(!Noticia.findByUrl(it.@href)) {
 					Noticia noticia = new Noticia(url: it.@href, , paginaWeb:'Gigantes',fechaDeteccion: new Date()).save(flush: true)
