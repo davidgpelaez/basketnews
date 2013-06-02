@@ -21,6 +21,9 @@ class NoticiasCrawlerJob {
 			   go "http://localhost:8080/basketnews/solobasket"
 			   go "http://localhost:8080/basketnews/marca"
 			   go "http://localhost:8080/basketnews/adeccoOro"
+			 //  go "http://localhost:8080/basketnews/terra"
+			 //  go "http://localhost:8080/basketnews/yahoo"
+			   go "http://localhost:8080/basketnews/basketme"
 			   log.info 'Crawler - Escaneo completado'
 		   }
     }

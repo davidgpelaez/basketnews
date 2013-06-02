@@ -134,6 +134,56 @@ class NoticiasScraperJob {
 			   log.info "Noticia ${noticia.url} actualizada"
 		   }
 	   }
+	   
+	   def noticiasNuevasTerra = Noticia.findAllWhere(paginaWeb:'Terra', titulo:null)
+	   noticiasNuevasTerra.each { noticia ->
+		   Browser.drive {
+			   
+			   go "${noticia.url}"
+			   noticia.titulo = $('h2.ttl-main').text()
+			   noticia.subtitulo = $('h2.description').text()
+			 //  
+			   noticia.save(flush:true)
+			   if(!noticia.titulo)
+			   {
+				   noticia.delete(flush:true)
+			   }
+			   log.info "Noticia ${noticia.url} actualizada"
+		   }
+	   }
+	   
+	   def noticiasYahooNuevas = Noticia.findAllWhere(paginaWeb:'Eurosport', titulo:null)
+	   noticiasYahooNuevas.each { noticia ->
+		   Browser.drive {
+			   
+			   go "${noticia.url}"
+			   noticia.titulo = $('h1.headline').text()
+			   noticia.subtitulo = $('h2.subheadline').text()
+			 //
+			   noticia.save(flush:true)
+			   if(!noticia.titulo)
+			   {
+				   noticia.delete(flush:true)
+			   }
+			   log.info "Noticia ${noticia.url} actualizada"
+		   }
+	   }
+//	   def noticiasNuevasBasketme = Noticia.findAllWhere(paginaWeb:'Basketme', titulo:null)
+//	   noticiasNuevasBasketme.each { noticia ->
+//		   Browser.drive {
+//			   
+//			   go "${noticia.url}"
+//			   noticia.titulo = $('h1.headline').text()
+//			   noticia.subtitulo = $('h2.subheadline').text()
+//			 //
+//			   noticia.save(flush:true)
+//			   if(!noticia.titulo)
+//			   {
+//				   noticia.delete(flush:true)
+//			   }
+//			   log.info "Noticia ${noticia.url} actualizada"
+//		   }
+//	   }
 	   log.info 'Scraper - Escaneo finalizado'
     }
 }

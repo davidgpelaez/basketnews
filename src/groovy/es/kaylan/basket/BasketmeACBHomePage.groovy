@@ -3,15 +3,14 @@ package es.kaylan.basket
 import geb.Page
 import groovy.lang.MetaClass;
 
-class SolobasketHomePage extends Page {
-
+class BasketmeACBHomePage extends Page {
 
 // pages can define their location, either absolutely or relative to a base
-	static url = "http://www.solobasket.com/"
+	static url = "http://www.basketme.com/noticias-acb"
  
 	static content = {
 
-        news { $("h2.node-title a", href: startsWith('http://www.solobasket.com')) }
+        news { $("a", href: startsWith('http://www.basketme.com/noticia.php?id=')) }
 		
  
        
