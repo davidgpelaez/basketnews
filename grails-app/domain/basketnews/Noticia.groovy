@@ -10,15 +10,19 @@ class Noticia {
 	String subtitulo
 	String texto
 	String[] tags
+	String[] htmlTags
 	Date fechaDeteccion
+	Date fechaReal
 	Integer hits
 	
     static constraints = {
 		titulo nullable: true
 		subtitulo nullable:true 
 		tags nullable:true
+		htmlTags nullable:true
 		texto nullable:true
 		hits nullable:true 
+		fechaReal nullable:true
     }
 	
 	static mapping = {

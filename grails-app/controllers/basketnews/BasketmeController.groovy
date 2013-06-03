@@ -14,7 +14,7 @@ class BasketmeController {
 		Browser.drive {
 			to BasketmeACBHomePage
 			news.each{
-				if(!Noticia.findByUrl(it.@href)) {
+				if(!Noticia.findByUrl(it.@href) && !IgnoreURL.findByUrl(it.@href)) {
 					
 					Noticia noticia = new Noticia(url: it.@href,titulo:it.text(), paginaWeb:'Basketme', fechaDeteccion: new Date()).save(flush: true)
 					log.info 'Noticia de Basketme ACB agregada'
@@ -22,7 +22,7 @@ class BasketmeController {
 			}
 			to BasketmeEuropaHomePage
 			news.each{
-				if(!Noticia.findByUrl(it.@href)) {
+				if(!Noticia.findByUrl(it.@href) && !IgnoreURL.findByUrl(it.@href)) {
 					
 					Noticia noticia = new Noticia(url: it.@href,titulo:it.text(), paginaWeb:'Basketme', fechaDeteccion: new Date()).save(flush: true)
 					log.info 'Noticia de Basketme Europa agregada'
@@ -31,7 +31,7 @@ class BasketmeController {
 			
 			to BasketmeNBAHomePage
 			news.each{
-				if(!Noticia.findByUrl(it.@href)) {
+				if(!Noticia.findByUrl(it.@href) && !IgnoreURL.findByUrl(it.@href)) {
 					
 					Noticia noticia = new Noticia(url: it.@href,titulo:it.text(), paginaWeb:'Basketme', fechaDeteccion: new Date()).save(flush: true)
 					log.info 'Noticia de Basketme NBA agregada'

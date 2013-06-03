@@ -10,7 +10,7 @@ class PiratasController {
 		Browser.drive {
 			to PiratasHomePage
 			news.each{
-				if(!Noticia.findByUrl(it.@href)) {
+				if(!Noticia.findByUrl(it.@href)  && !IgnoreURL.findByUrl(it.@hr)){
 					
 					Noticia noticia = new Noticia(url: it.@href, paginaWeb:'Piratas', fechaDeteccion: new Date()).save(flush: true)
 					log.info 'Noticia de Piratas agregada'

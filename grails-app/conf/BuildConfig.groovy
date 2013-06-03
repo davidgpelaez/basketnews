@@ -64,7 +64,7 @@ grails.project.dependency.resolution = {
 
         compile ':cache:1.0.0'
 		
-		
+		runtime ':twitter-bootstrap:2.3.2'
 		//compile ':cloud-foundry:1.2.3'
     }
 }

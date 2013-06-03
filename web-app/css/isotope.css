@@ -840,7 +840,7 @@ code .nd { color: #9FAD7E; } /* CSS pseudo selector */
 .clearfix { zoom: 1; }
 
 body{
-	background: url('../images/prueba.jpg') no-repeat;
+	// background: url('../images/prueba.jpg') no-repeat;
 		color: #555;
         padding-top: 60px;
         padding-bottom: 40px;

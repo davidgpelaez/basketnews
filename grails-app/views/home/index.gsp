@@ -31,29 +31,32 @@
 		</div>
 		</div>
 	</div>
-	<div class="row-fluid">
+	<div class="row-fluid center">
 		
-		<div class="btn-group center" id="filters">
-			<button class="btn btn-filter" data-filter="*">Todas</button>
-			<button class="btn btn-filter" data-filter=".ACB">ACB.com</button>
-			<button class="btn btn-filter" data-filter=".AdeccoOro">AdeccoOro</button>
-			<button class="btn btn-filter" data-filter=".Marca">Marca</button>
-			<button class="btn btn-filter" data-filter=".Piratas">Piratas</button>
-			<button class="btn btn-filter" data-filter=".Solobasket">Solobasket</button>
-			<button class="btn btn-filter" data-filter=".TuBasket">TuBasket</button>
-
+		<div class="btn-group center" id="filters" data-toggle="buttons-radio">
+			<button class="btn btn-filter btn-primary" data-filter="*">Todas</button>
+			<button class="btn btn-filter btn-primary" data-filter=".ACB">ACB.com</button>
+			<button class="btn btn-filter btn-primary" data-filter=".AdeccoOro">AdeccoOro</button>
+			<button class="btn btn-filter btn-primary" data-filter=".Basketme">BasketMe</button>
+			<button class="btn btn-filter btn-primary" data-filter=".Eurosport">Eurosport</button>
+			<button class="btn btn-filter btn-primary" data-filter=".Marca">Marca</button>
+			<button class="btn btn-filter btn-primary" data-filter=".Piratas">Piratas</button>
+			<button class="btn btn-filter btn-primary"  data-filter=".Solobasket">Solobasket</button>
+			<button class="btn btn-filter btn-primary" data-filter=".Terra">Terra</button>
+			<button class="btn btn-filter btn-primary"  data-filter=".TuBasket">TuBasket</button>
 		</div>
-		<div class="form-search">
+		<g:paginate controller="home" action="index" total="${noticiasCount}" next="Siguiente" prev="Anterior"/>
+	</div>
+	<!-- <div class="form-search">
 		  <input type="text" class="input-medium search-query"  id="search" name="search" placeholder="Busca noticias..." >
 		   <button class="btn" id="searchButton" type="button">Buscar!</button>
 		</div>
-	
+		 -->	
+	<div class="row-fluid">
 		<div id="news">
 
 			<g:each in="${noticias}">
-				<div class="element ${it.paginaWeb}
-				<g:each in="${it.tags}" var="tag"> ${tag}  </g:each>
-				"  data-web="${it.paginaWeb}">
+				<div class="element ${it.paginaWeb}"  data-web="${it.paginaWeb}">
 				<span class="favIcon"><a class="btn btn-mini" href="#"><i class="icon-star"></i></a></span>	
 				<span class="leido">Leído ${it.hits?:0} veces</span>
 				
@@ -64,7 +67,8 @@
 						</h2>
 					</g:link>
 				
-				<small class="fechaNoticia"><g:formatDate format="dd-MM-yyyy HH:mm:ss" date="${it.fechaDeteccion}"/></small>
+				<small class="fechaNoticia">Deteccion: <g:formatDate format="dd-MM-yyyy HH:mm:ss" date="${it.fechaDeteccion}"/></small>
+				<small class="">Real: <g:formatDate format="dd-MM-yyyy HH:mm:ss" date="${it.fechaReal}"/></small>
 				<div class="tagsNoticia">
 					Tags: 
 					<g:each in="${it.tags}" var="tag">

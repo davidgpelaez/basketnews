@@ -11,7 +11,7 @@ class TerraController {
 		Browser.drive {
 			to TerraACBHomePage
 			news.each{
-				if(!Noticia.findByUrl(it.@href)) {
+				if(!Noticia.findByUrl(it.@href)  && !IgnoreURL.findByUrl(it.@href)) {
 					
 					Noticia noticia = new Noticia(url: it.@href, paginaWeb:'Terra', fechaDeteccion: new Date()).save(flush: true)
 					log.info 'Noticia de Terra ACB agregada'
@@ -19,7 +19,7 @@ class TerraController {
 			}
 			to TerraNBAHomePage
 			news.each{
-				if(!Noticia.findByUrl(it.@href)) {
+				if(!Noticia.findByUrl(it.@href)  && !IgnoreURL.findByUrl(it.@href)) {
 					
 					Noticia noticia = new Noticia(url: it.@href, paginaWeb:'Terra', fechaDeteccion: new Date()).save(flush: true)
 					log.info 'Noticia de Terra NBA agregada'

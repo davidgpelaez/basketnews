@@ -20,22 +20,29 @@
 		<g:each in="${noticiasLeidas.results()}" var="leidas">
 			leidas["${leidas['_id']}"] = ${leidas['leidas']};
 		</g:each>
+		var numNotis = new Array();
+		<g:each in="${noticiasGroup.results()}" var="group">
+		numNotis["${group['_id']}"] = ${group['noticias']};
+		</g:each>
 		
-       var dataNoticias = [
-				<g:each in="${noticiasGroup.results()}" var="group">
-				{
-					value: ${group['noticias']}, 
-					color: colors["${group['_id']}"]
-				}, 
-				</g:each>
-               ]
 
-	var dataLeidas = {labels : ["TuBasket","ACB.com","Solobasket","Marca","Adecco Oro", "Piratas"],
+	var dataLeidas = {labels : ["TuBasket","BasketMe","Terra","Eurosport","ACB.com","Solobasket","Marca","Adecco Oro", "Piratas"],
 		datasets : [
 			{
 				fillColor : "rgba(5,96,242,0.5)",
 				strokeColor : "rgba(220,220,220,1)",
-				data : [leidas['TuBasket'],leidas['ACB'],leidas['Solobasket'],leidas['Marca'],leidas['AdeccoOro'],leidas['Piratas']]
+				data : [leidas['TuBasket'],leidas['Basketme'],leidas['Terra'],leidas['Eurosport'],leidas['ACB'],leidas['Solobasket'],leidas['Marca'],leidas['AdeccoOro'],leidas['Piratas']]
+			}
+		]
+	}
+
+
+	var dataNumNotis = {labels : ["TuBasket","BasketMe","Terra","Eurosport","ACB.com","Solobasket","Marca","Adecco Oro", "Piratas"],
+		datasets : [
+			{
+				fillColor : "rgba(5,96,242,0.5)",
+				strokeColor : "rgba(220,220,220,1)",
+				data : [numNotis['TuBasket'],numNotis['Basketme'],numNotis['Terra'],numNotis['Eurosport'],numNotis['ACB'],numNotis['Solobasket'],numNotis['Marca'],numNotis['AdeccoOro'],numNotis['Piratas']]
 			}
 		]
 	}
@@ -46,23 +53,14 @@
 	<div class="row-fluid">
 		<div class="hero-unit containerGrafico">
 			<h1>Noticias por página</h1>
-			<canvas id="noticiasPorPagina" class="grafico" width="400" height="400"></canvas>
-			<ul class="leyendaGrafico">
-					<li>TuBasket <span class="badge" style="background-color: #FFFF00"> x </span></li>
-					<li>ACB <span class="badge" style="background-color: #FF9900">x </span></li>
-					<li>Marca <span class="badge" style="background-color: #FF6C6C"> x </span></li>
-					<li>Solobasket <span class="badge" style="background-color: #6699FF"> x </span></li>
-					<li>AdeccoOro <span class="badge" style="background-color: #CCFF99"> x </span></li>
-					<li>Piratas <span class="badge" style="background-color: #CCD6CC"> x </span></li>
-				</ul>
-				
+			<canvas id="noticiasPorPagina" width="800" height="400"></canvas>
 		
 		</div>
 	</div>
 	<div class="row-fluid">	
 		<div class="hero-unit containerGrafico">
 			<h1>Clicks por página</h1>
-			<canvas id="myChart2" width="600" height="400"></canvas>
+			<canvas id="myChart2" width="800" height="400"></canvas>
 	
 		</div>
 	</div>

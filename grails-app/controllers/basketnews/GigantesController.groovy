@@ -13,7 +13,7 @@ class GigantesController {
 				log.info "${it.html()}"
 			}
 			news.each{
-				if(!Noticia.findByUrl(it.@href)) {
+				if(!Noticia.findByUrl(it.@href) && !IgnoreURL.findByUrl(it.@href)) {
 					Noticia noticia = new Noticia(url: it.@href, , paginaWeb:'Gigantes',fechaDeteccion: new Date()).save(flush: true)
 					log.info 'Noticia de gigantes agregada'
 				}
