@@ -7,7 +7,7 @@ import geb.Browser
 class NoticiasCrawlerJob {
 	
 	def concurrent = false
-	
+	def grailsApplication
     static triggers = {
       simple  startDelay: 10000, repeatInterval: 900000 
     }
@@ -15,15 +15,15 @@ class NoticiasCrawlerJob {
     def execute() {
         Browser.drive {
 			   log.info 'Crawler - Escaneo iniciado'
-			   go "http://localhost:8080/basketnews/acb"
-			   go "http://localhost:8080/basketnews/tuBasket"
-			   go "http://localhost:8080/basketnews/piratas"
-			   go "http://localhost:8080/basketnews/solobasket"
-			   go "http://localhost:8080/basketnews/marca"
-			   go "http://localhost:8080/basketnews/adeccoOro"
-			   go "http://localhost:8080/basketnews/terra"
-			   go "http://localhost:8080/basketnews/yahoo"
-			   go "http://localhost:8080/basketnews/basketme"
+			   go grailsApplication.config.grails.serverURL+"/acb"
+			   go grailsApplication.config.grails.serverURL+"/tuBasket"
+			   go grailsApplication.config.grails.serverURL+"/piratas"
+			   go grailsApplication.config.grails.serverURL+"/solobasket"
+			   go grailsApplication.config.grails.serverURL+"/marca"
+			   go grailsApplication.config.grails.serverURL+"/adeccoOro"
+			   go grailsApplication.config.grails.serverURL+"/terra"
+			   go grailsApplication.config.grails.serverURL+"/yahoo"
+			   go grailsApplication.config.grails.serverURL+"/basketme"
 			   log.info 'Crawler - Escaneo completado'
 		   }
     }

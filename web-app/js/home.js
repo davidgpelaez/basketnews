@@ -27,7 +27,7 @@ $(function(){
     $(".enlaceNoticia").click(function() {
     	$.ajax({
     		  type: "POST",
-    		  url: "http://localhost:8080/basketnews/home/count",
+    		  url: "http://82.196.10.131:8080/basketnews/home/count",
     		  data: { noticia: $(this).attr('href')}
     		}).done(function( msg ) {
     		  //Actualizar el "leido $msg veces"
