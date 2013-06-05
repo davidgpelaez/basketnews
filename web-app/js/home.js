@@ -7,7 +7,7 @@ $(function(){
       $('#searchButton').click(function(){
     	  $.ajax({
     		  type: "GET",
-    		  url: "http://localhost:8080/basketnews/home/search",
+    		  url: urlPath+"/home/search",
     		  data: { texto: $('#search').val()}
     		}).done(function( msg ) {
     		  alert(msg);
@@ -27,7 +27,7 @@ $(function(){
     $(".enlaceNoticia").click(function() {
     	$.ajax({
     		  type: "POST",
-    		  url: "http://82.196.10.131:8080/basketnews/home/count",
+    		  url: urlPath+"/home/count",
     		  data: { noticia: $(this).attr('href')}
     		}).done(function( msg ) {
     		  //Actualizar el "leido $msg veces"

@@ -9,12 +9,46 @@
 	
 	
 	<title>Basket News</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Bootstrap -->
 	<link href="${resource(dir:'css',file:'bootstrap.min.css') }" rel="stylesheet" media="screen">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Bootstrap -->
+ 	<style type="text/css">
+
+      /* Sticky footer styles
+      -------------------------------------------------- */
+
+      html,
+      body {
+        height: 100%;
+        /* The html and body elements cannot have any padding or margin. */
+      }
+
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+      }
+
+      /* Set the fixed height of the footer here */
+      #push,
+      #footer {
+        height: 60px;
+      }
+      #footer {
+        background-color: #f5f5f5;
+      }
+
+    </style>
+    <script type="text/javascript">	
+	var urlPath = "${ grailsApplication.config.grails.serverURL}"; 
+	</script>
 	<g:layoutHead />
 	</head>
 	<body>
+	
+	<div id="wrap">
 	<div class="navbar navbar-inverse navbar-fixed-top navbar-basketnews">
       <div class="navbar-inner">
         <div class="container" >
@@ -38,14 +72,6 @@
 
 				<div class="btn-group">
 					 <g:link class="btn btn-primary" controller="estadisticas">Estadísticas</g:link>
-					<button class="btn dropdown-toggle btn-primary" data-toggle="dropdown">
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-						<li><a href="#">Noticias por página</a></li>
-						<li><a href="#">Noticias más visitadas</a></li>
-						<li><a href="#">Trendings</a></li>
-					</ul>
 				</div>
 				
 			
@@ -53,10 +79,26 @@
         </div>
       </div>
     </div>
-
+	
     <div class="container">
 		<g:layoutBody />
 	
 	</div>
+	</div>
+	  <div id="footer">
+      <div class="container">
+      	<p>
+        <b>Powered By: </b>
+        <a href="">Grails</a> /
+        <a href="">MongoDB</a> /
+        <a href="">Gebish</a> /
+        <a href="">Bootstrap</a> /
+        <a href="">Isotope</a> /
+        <a href="">ChartJs</a> /
+        <a href="">jQCloud</a>
+        </p>
+      </div>
+    </div>
+
 	</body>
 </html>

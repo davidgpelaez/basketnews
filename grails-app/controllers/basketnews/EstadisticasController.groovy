@@ -9,7 +9,7 @@ class EstadisticasController {
 		def db = mongo.getDB('basketnews')
 		def noticiasGroup = db.noticia.aggregate([$group:[_id:'$paginaWeb', noticias:[$sum:1]]])
 		def noticiasLeidas = db.noticia.aggregate([$group:[_id:'$paginaWeb', leidas:[$sum:'$hits']]])
-
-		[noticiasGroup: noticiasGroup, noticiasLeidas: noticiasLeidas]
+		def tags = db.tagCloud.find([isLast:true]).sort([repeticiones: -1]).limit(10)
+		[noticiasGroup: noticiasGroup, noticiasLeidas: noticiasLeidas, tags: tags]
 	}
 }

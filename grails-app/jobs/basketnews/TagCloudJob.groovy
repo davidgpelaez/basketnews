@@ -6,14 +6,17 @@ class TagCloudJob {
    def concurrent = false
 	def mongo
 
-	static triggers = { simple repeatInterval: 14400000 //each 4 hous
+	
+	static triggers = {
+	  simple  startDelay: 360000, repeatInterval: 14400000
 	}
+
 
     def execute() {
       // Buscar noticias de los últimos dos días, sacar palabras clave, buscar candidatos y agrupar
 		def db = mongo.getDB('basketnews')
-	
-		def not = db.noticia.find([fechaDeteccion:[$gte:new Date()-2]],[tags:1,_id:0])
+	    log.info 'Lets go to calculate tagCloud!'
+		def not = db.noticia.find([fechaReal:[$gte:new Date()-3]],[tags:1,_id:0])
 
 		def tagCloud = [:]
 		
@@ -42,6 +45,6 @@ class TagCloudJob {
 			}
 			
 		}
-		
+		log.info 'Calculate tagCloud finished'
     }
 }

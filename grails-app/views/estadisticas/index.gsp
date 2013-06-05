@@ -9,13 +9,6 @@
 <link rel="stylesheet" href="${resource(dir:'css',file:'jqcloud.css') }" />
 <link rel="stylesheet" href="${resource(dir:'css',file:'isotope.css') }" />
  <script type="text/javascript">
-		var colors = new Array();
-		colors['TuBasket']="#FFFF00";
-		colors['Marca']="#FF6C6C";
-		colors['Solobasket']="#6699FF";
-		colors['ACB']="#FF9900";
-		colors['AdeccoOro']="#CCFF99";
-		colors['Piratas']="#CCD6CC";
 		var leidas = new Array();
 		<g:each in="${noticiasLeidas.results()}" var="leidas">
 			leidas["${leidas['_id']}"] = ${leidas['leidas']};
@@ -24,7 +17,16 @@
 		<g:each in="${noticiasGroup.results()}" var="group">
 		numNotis["${group['_id']}"] = ${group['noticias']};
 		</g:each>
-		
+		var lediasPorNumero = new Array();
+		<g:each in="${noticiasGroup.results()}" var="group">
+		lediasPorNumero["${group['_id']}"] = leidas["${group['_id']}"]/${group['noticias']};
+		</g:each>
+		var tagCloud = new Array(10);
+		<g:each in="${tags}" var="tag" status="i" >
+		tagCloud[${i}]=new Array(2);
+		tagCloud[${i}]['name']="${tag['tag']}";
+		tagCloud[${i}]['num']= ${tag['repeticiones']};
+		</g:each>
 
 	var dataLeidas = {labels : ["TuBasket","BasketMe","Terra","Eurosport","ACB.com","Solobasket","Marca","Adecco Oro", "Piratas"],
 		datasets : [
@@ -47,24 +49,56 @@
 		]
 	}
 
+	var dataLeidasPorNum = {labels : ["TuBasket","BasketMe","Terra","Eurosport","ACB.com","Solobasket","Marca","Adecco Oro", "Piratas"],
+			datasets : [
+				{
+					fillColor : "rgba(5,96,242,0.5)",
+					strokeColor : "rgba(220,220,220,1)",
+					data : [lediasPorNumero['TuBasket'],lediasPorNumero['Basketme'],lediasPorNumero['Terra'],lediasPorNumero['Eurosport'],lediasPorNumero['ACB'],lediasPorNumero['Solobasket'],lediasPorNumero['Marca'],lediasPorNumero['AdeccoOro'],lediasPorNumero['Piratas']]
+				}
+			]
+		}
+	var dataTags = {labels : [tagCloud[0]['name'],tagCloud[1]['name'],tagCloud[2]['name'],tagCloud[3]['name'],tagCloud[4]['name'],tagCloud[5]['name'],tagCloud[6]['name'],tagCloud[7]['name'],tagCloud[8]['name'],tagCloud[9]['name']],
+			datasets : [
+				{
+					fillColor : "rgba(5,96,242,0.5)",
+					strokeColor : "rgba(220,220,220,1)",
+					data : [tagCloud[0]['num'],tagCloud[1]['num'],tagCloud[2]['num'],tagCloud[3]['num'],tagCloud[4]['num'],tagCloud[5]['num'],tagCloud[6]['num'],tagCloud[7]['num'],tagCloud[8]['num'],tagCloud[9]['num']]
+				}
+			]
+		}
+
 </script>
 </head>
 <body>
 	<div class="row-fluid">
 		<div class="hero-unit containerGrafico">
-			<h1>Noticias por página</h1>
+			<h1>Noticias por medio de comunicación</h1>
 			<canvas id="noticiasPorPagina" width="800" height="400"></canvas>
 		
 		</div>
 	</div>
 	<div class="row-fluid">	
 		<div class="hero-unit containerGrafico">
-			<h1>Clicks por página</h1>
+			<h1>Clicks por medio de comunicación</h1>
 			<canvas id="myChart2" width="800" height="400"></canvas>
 	
 		</div>
 	</div>
+	<div class="row-fluid">	
+		<div class="hero-unit containerGrafico">
+			<h1>Clicks / Número noticias</h1>
+			<canvas id="myChart3" width="800" height="400"></canvas>
 	
+		</div>
+	</div>
+	<div class="row-fluid">	
+		<div class="hero-unit containerGrafico">
+			<h1>Tags últimos dos días</h1>
+			<canvas id="myChart4" width="800" height="400"></canvas>
+	
+		</div>
+	</div>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
 		
 	<script src="${resource(dir:'js',file:'jqcloud-1.0.4.min.js') }"></script>

@@ -30,6 +30,6 @@ class Noticia {
 		titulo index:true
 		paginaWeb index:true
 		tags index:true
-		sort fechaDeteccion: "desc"
+		sort fechaReal: "desc"
 	}
 }
