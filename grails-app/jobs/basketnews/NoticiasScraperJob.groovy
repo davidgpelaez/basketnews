@@ -68,7 +68,7 @@ class NoticiasScraperJob {
 				go "${noticia.url}"
 				noticia.titulo = $('article.new-body h1').text()
 				noticia.subtitulo = $('article.new-body div.body').text()
-				noticia.htmlTags = $('meta', 'name': 'keywords').@content.split(",")
+			//	noticia.htmlTags = $('meta', 'name': 'keywords').@content.split(",")
 
 				try{
 					noticia.fechaReal = dateFormat.parse($('.author span')[0].text()+' - '+$('.author span')[1].text())
@@ -137,7 +137,11 @@ class NoticiasScraperJob {
 				try{
 					noticia.fechaReal = dateFormat.parse($('.fecha').text())
 				}catch(ParseException exc){
-					noticia.fechaReal = dateFormatNBAes.parse($('.fecha').text())
+					try{
+						noticia.fechaReal = dateFormatNBAes.parse($('.fecha').text())
+					}catch(Exception ex){
+						noticia.fechaReal=noticia.fechaDeteccion
+					}
 				}
 				if(noticia.titulo)
 				{
@@ -187,7 +191,7 @@ class NoticiasScraperJob {
 			Browser.drive {
 				go "${noticia.url}"
 				def textoFecha = $('span.createdate').text()
-				noticia.titulo = $('h2.contentheading a').text().toLowerCase().capitalize()
+				noticia.titulo = $('h2.contentheading a').text()?.toLowerCase().capitalize()
 				noticia.subtitulo = $('div.article-content b').text()
 				try{
 					noticia.fechaReal = dateFormat.parse(textoFecha.substring(textoFecha.indexOf(", ")+2, textoFecha.length()))
@@ -275,12 +279,17 @@ class NoticiasScraperJob {
 			Browser.drive {
 				SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy - HH:mm'h'.")
 				go "${noticia.url}"
-			//	noticia.titulo = $('h1.headline').text()
+		
 				noticia.subtitulo = $('h2.subheadline').text()
 				//Infierno de html...
 				def fecha = $('span', style: 'color: #CC0000;')
-				log.info 'Fecha basketme: '+fecha.text()
-				noticia.fechaReal = dateFormat.parse(fecha.text())
+					try{				
+						noticia.fechaReal = dateFormat.parse(fecha.text())
+					}catch(Exception ex){
+						log.info 'No hemos podido obtener la fecha para la noticia de basketme: '+noticia.url
+						noticia.fechaReal = noticia.fechaDeteccion
+					}
+		
 				if(noticia.titulo)
 				{
 					noticia.save(flush:true)
