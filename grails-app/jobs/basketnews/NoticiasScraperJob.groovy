@@ -191,7 +191,7 @@ class NoticiasScraperJob {
 			Browser.drive {
 				go "${noticia.url}"
 				def textoFecha = $('span.createdate').text()
-				noticia.titulo = $('h2.contentheading a').text()?.toLowerCase().capitalize()
+				noticia.titulo = $('h2.contentheading a').text().toLowerCase().capitalize()
 				noticia.subtitulo = $('div.article-content b').text()
 				try{
 					noticia.fechaReal = dateFormat.parse(textoFecha.substring(textoFecha.indexOf(", ")+2, textoFecha.length()))

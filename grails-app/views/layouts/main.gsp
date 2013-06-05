@@ -4,12 +4,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<link rel="shortcut icon"
-		href="${resource(dir: 'images', file: 'favicon.ico')}"
+		href="${grailsApplication.config.grails.serverURL}/images/favicon.ico"
 		type="image/x-icon">
 	
 	
 	<title>Basket News</title>
-	<link href="${resource(dir:'css',file:'bootstrap.min.css') }" rel="stylesheet" media="screen">
+	<link href="${ grailsApplication.config.grails.serverURL}/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Bootstrap -->

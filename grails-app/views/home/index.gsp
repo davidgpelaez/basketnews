@@ -6,8 +6,8 @@
 <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <meta name="layout" content="main" />
 <title>Welcome to BasketNews</title>
-<link rel="stylesheet" href="${resource(dir:'css',file:'jqcloud.css') }" />
-<link rel="stylesheet" href="${resource(dir:'css',file:'isotope.css') }" />
+<link rel="stylesheet" href="${ grailsApplication.config.grails.serverURL}/css/jqcloud.css" />
+<link rel="stylesheet" href="${ grailsApplication.config.grails.serverURL}/css/isotope.css" />
  <script type="text/javascript">
       /*!
        * Create an array of word objects, each representing a word in the cloud
@@ -126,12 +126,12 @@
 	</div>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
 	
-	<script src="${resource(dir:'js',file:'jqcloud-1.0.4.min.js') }"></script>
-	<script src="${resource(dir:'js',file:'jquery.isotope.min.js') }"></script>
-	<script src="${resource(dir:'js',file:'Chart.min.js') }"></script>
-	<script src="${resource(dir:'js',file:'application.js') }"></script>
+	<script src="${ grailsApplication.config.grails.serverURL}/js/jqcloud-1.0.4.min.js"></script>
+	<script src="${ grailsApplication.config.grails.serverURL}/js/jquery.isotope.min.js"></script>
+	<script src="${ grailsApplication.config.grails.serverURL}/js/Chart.min.js"></script>
+	<script src="${ grailsApplication.config.grails.serverURL}/js/application.js"></script>
 		
-	<script src="${resource(dir:'js',file:'bootstrap.min.js') }"></script>
-	<script src="${resource(dir:'js',file:'home.js') }"></script>
+	<script src="${ grailsApplication.config.grails.serverURL}/js/bootstrap.min.js"></script>
+	<script src="${ grailsApplication.config.grails.serverURL}/js/home.js"></script>
 </body>
 </html>
