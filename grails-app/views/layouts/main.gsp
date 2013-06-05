@@ -57,11 +57,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <g:link class="brand" controller="home">BasketNews</g:link>
+          <g:link class="brand"  absolute="true" controller="home">BasketNews</g:link>
          
 
 				<div class="btn-group ">
-				   <g:link class="btn btn-primary" controller="home">Noticias</g:link>
+				   <g:link class="btn btn-primary" absolute="true" controller="home">Noticias</g:link>
 					<button class="btn dropdown-toggle btn-primary" data-toggle="dropdown">
 						<span class="caret"></span>
 					</button>
@@ -71,7 +71,7 @@
 				</div>
 
 				<div class="btn-group">
-					 <g:link class="btn btn-primary" controller="estadisticas">Estadísticas</g:link>
+					 <g:link class="btn btn-primary" absolute="true" controller="estadisticas">Estadísticas</g:link>
 				</div>
 				
 			
