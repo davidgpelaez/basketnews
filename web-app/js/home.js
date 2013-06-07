@@ -25,7 +25,7 @@ $(function(){
     //$("#tagCloud").jQCloud(word_array,{afterCloudRender: makeTagFilters});
       $("#tagCloud").jQCloud(word_array);
     
-    $(".enlaceNoticia").click(function() {
+    $(".enlaceNoticia").mousedown(function() {
     	$.ajax({
     		  type: "POST",
     		  url: urlPath+"/home/count",
@@ -34,8 +34,8 @@ $(function(){
     		  //Actualizar el "leido $msg veces"
     		});
     	});
+  
     
-   
 });
 
 function makeTagFilters(){
