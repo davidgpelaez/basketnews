@@ -14,7 +14,7 @@
        */
       var word_array = [
 		<g:each in="${tagCloud}" var="tagCount">
-		{text: "${tagCount['tag']}", weight: ${tagCount['repeticiones']}}, 
+		{text: "${tagCount['tag']}", weight: ${tagCount['repeticiones']}, link: urlPath+"/home/index?tag=${tagCount['tag']}"}, 
 		</g:each>
       ];
 
@@ -39,7 +39,7 @@
 		</div>
 		<div class="span10">
 		
-		<g:paginate controller="home" action="index" total="${noticiasCount}" next="Siguiente" prev="Anterior"/>
+		<g:paginate total="${noticiasCount}" next="Siguiente" prev="Anterior"/>
 		</div>
 	</div>
 	<!-- <div class="form-search">

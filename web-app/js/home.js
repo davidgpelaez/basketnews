@@ -22,7 +22,8 @@ $(function(){
         });
 
 
-    $("#tagCloud").jQCloud(word_array,{afterCloudRender: makeTagFilters});
+    //$("#tagCloud").jQCloud(word_array,{afterCloudRender: makeTagFilters});
+      $("#tagCloud").jQCloud(word_array);
     
     $(".enlaceNoticia").click(function() {
     	$.ajax({
