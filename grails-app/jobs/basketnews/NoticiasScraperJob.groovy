@@ -136,7 +136,7 @@ class NoticiasScraperJob {
 				noticia.subtitulo = $('li h4').text()
 				try{
 					noticia.fechaReal = dateFormat.parse($('.fecha').text())
-				}catch(ParseException exc){
+				}catch(Exception exc){
 					try{
 						noticia.fechaReal = dateFormatNBAes.parse($('.fecha').text())
 					}catch(Exception ex){
