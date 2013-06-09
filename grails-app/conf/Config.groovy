@@ -73,34 +73,28 @@ environments {
 
 // log4j configuration
 log4j = {
-    // Example of changing the log pattern for the default console appender:
-    //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
-	appenders {
-		console name:'stdout'
-		
-	}
-	root {
-		info 'stdout'
-		additivity = true
-	}
 
-    error  'org.codehaus.groovy.grails.web.servlet',        // controllers
-           'org.codehaus.groovy.grails.web.pages',          // GSP
-           'org.codehaus.groovy.grails.web.sitemesh',       // layouts
-           'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
-           'org.codehaus.groovy.grails.web.mapping',        // URL mapping
-           'org.codehaus.groovy.grails.commons',            // core / classloading
-           'org.codehaus.groovy.grails.plugins',            // plugins
-           'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
-           'org.springframework',
-           'org.hibernate',
-           'net.sf.ehcache.hibernate'
+		appenders {
+			console name:'stdout'
+			rollingFile name: "jobsAppender",maxFileSize: 1024,file: "/tmp/logs/basketnewsJobs.log"
+			rollingFile name: "errorsAppender",maxFileSize: 1024,file: "/tmp/logs/basketnewsErrors.log"
+		}
+		root {
+			error 'stdout', 'errorsAppender'
+			additivity = true
+		}
+		
+		info jobsAppender: "grails.app"
+	
+		error  'org.codehaus.groovy.grails.web.servlet',        // controllers
+		'org.codehaus.groovy.grails.web.pages',          // GSP
+		'org.codehaus.groovy.grails.web.sitemesh',       // layouts
+		'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
+		'org.codehaus.groovy.grails.web.mapping',        // URL mapping
+		'org.codehaus.groovy.grails.commons',            // core / classloading
+		'org.codehaus.groovy.grails.plugins',            // plugins
+		'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
+		'org.springframework'
+	
 }
 
-
-grails.plugin.cloudfoundry.target = 'api.cloudfoundry.com'
-grails.plugin.cloudfoundry.username = 'david.gomez.pelaez@gmail.com'
-grails.plugin.cloudfoundry.password = 'password'
