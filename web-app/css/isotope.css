@@ -897,7 +897,30 @@ body{
 	background-color: #CF0000;
 }
 .Solobasket-ribbon a {
+	background: #ff7604;
+}
+.TuBasket-ribbon a {
+	background: #1d4f80;
+}
+.NbaManiacs-ribbon a {
+	background: #222;
+	color: #FFFFFF;
+}
+.AdeccoOro-ribbon a {
 	background: #888888;
+}
+.Terra-ribbon a {
+	background: #ff9900;
+}
+.Eurosport-ribbon a {
+	background: #000000;
+	color: #FFFFFF;
+}
+.Basketme-ribbon a {
+	background: #134f8c;
+}
+.Piratas-ribbon a {
+	background: #a0351b;
 }
 .basket-ribbon a:hover {
 	background: #060;

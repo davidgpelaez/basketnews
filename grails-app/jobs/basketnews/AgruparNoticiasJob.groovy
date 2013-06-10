@@ -33,7 +33,7 @@ class AgruparNoticiasJob {
 		
 	]
 	
-	def IGNORE_WORDS = ['Ya','Basket', 'Gran', 'Oficial', 'Mi', 'Cuando', 'Por','Para','A','No','Un', 'Uno', 'Una', 'Unos', 'Unas', 'Lo', 'El', 'La', 'Los', 'Las', 'Y', 'Es', 'Son', 'Sin', 'Real', 'Hay', 'LA','PRENSA', 'DICE']
+	def IGNORE_WORDS = ['Este','Le', 'Más', 'Nunca','De', 'Que','Al', 'Se', 'Sé', 'Con', 'Del', 'Su', 'En', 'Ya','Basket', 'Gran', 'Oficial', 'Mi', 'Cuando', 'Por','Para','A','No','Un', 'Uno', 'Una', 'Unos', 'Unas', 'Lo', 'El', 'La', 'Los', 'Las', 'Y', 'Es', 'Son', 'Sin', 'Real', 'Hay', 'LA','PRENSA', 'DICE']
 
 	def execute() {
 		
@@ -53,9 +53,12 @@ class AgruparNoticiasJob {
 				it.replaceAll("[\\.|'|,|:|\"|\\?]", "")
 			}
 			
-			noticia.tags = tituloSplitted.findAll {
+			def tags = tituloSplitted.findAll {
+				(it && Character.isUpperCase(it.charAt(0)) && isImportantWord(it)) || isTag(it)
 				
-				(it && Character.isUpperCase(it.charAt(0)) && isImportantWord(it)) || keywords.contains(it)
+			}
+			noticia.tags = tags.collect {
+				it.capitalize()
 			}
 			noticia.save(flush: true)
 			println noticia.tags
@@ -66,5 +69,10 @@ class AgruparNoticiasJob {
 		!IGNORE_WORDS.contains(word)
 	}
 	
+	def isTag(def word){
+		def db = mongo.getDB('basketnews')
+		isImportantWord(word.capitalize()) && ((keywords.contains(word) || db.noticia.getCount([tags:word.capitalize()])>0))
+			
+	}
 
 }

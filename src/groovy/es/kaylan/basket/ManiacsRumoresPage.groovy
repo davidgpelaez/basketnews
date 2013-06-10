@@ -3,17 +3,16 @@ package es.kaylan.basket
 import geb.Page
 import groovy.lang.MetaClass;
 
-class GigantesHomePage extends Page {
+class ManiacsRumoresPage extends Page {
 
 // pages can define their location, either absolutely or relative to a base
-	static url = "http://www.gigantes.com"
+	static url = "http://www.nbamaniacs.com/rumores-nba/"
  
 	static content = {
-		
-			news { $("h1 a") }
-		   
-		}
-		
+	
+        news { $("h2.xlarge a") }
+       
+	}
 	
 
 }

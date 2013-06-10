@@ -25,6 +25,7 @@ class NoticiasCrawlerJob {
 			go grailsApplication.config.grails.serverURL+"/terra"
 			go grailsApplication.config.grails.serverURL+"/yahoo"
 			go grailsApplication.config.grails.serverURL+"/basketme"
+			go grailsApplication.config.grails.serverURL+"/nbaManiacs"
 			log.info 'Crawler - Escaneo completado'
 		}
 	}

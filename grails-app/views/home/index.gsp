@@ -39,7 +39,7 @@
 		</div>
 		<div class="span10">
 		
-		<g:paginate total="${noticiasCount}" next="Siguiente" prev="Anterior"/>
+		<g:paginate action="index" total="${noticiasCount}" next="Siguiente" prev="Anterior"/>
 		</div>
 	</div>
 	<!-- <div class="form-search">

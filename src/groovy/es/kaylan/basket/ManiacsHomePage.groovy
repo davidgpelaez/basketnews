@@ -6,11 +6,11 @@ import groovy.lang.MetaClass;
 class ManiacsHomePage extends Page {
 
 // pages can define their location, either absolutely or relative to a base
-	static url = "http://www.acb.com/"
+	static url = "http://www.nbamaniacs.com/noticias/"
  
 	static content = {
 	
-        news { $("div.ultimas_notis a") }
+        news { $("h2.xlarge a") }
        
 	}
 	

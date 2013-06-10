@@ -20,6 +20,7 @@ class NoticiasScraperJob {
 	
 	static triggers = {
       simple  startDelay: 240000, repeatInterval: 60000 
+	 // simple  repeatInterval: 60000
     }
 
 	
@@ -104,8 +105,7 @@ class NoticiasScraperJob {
 				go "${noticia.url}"
 				noticia.titulo = $('h1.title').text()
 				noticia.subtitulo = $('.content-summary li').text()
-				log.info 'Tags solobasket'+$('li.tag a').text()
-				//  noticia.htmlTags =
+					
 				try{
 					noticia.fechaReal = dateFormat.parse($('.date-display-single').text())
 				}catch(Exception ex){
@@ -279,7 +279,7 @@ class NoticiasScraperJob {
 			Browser.drive {
 				SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy - HH:mm'h'.")
 				go "${noticia.url}"
-		
+				
 				noticia.subtitulo = $('h2.subheadline').text()
 				//Infierno de html...
 				def fecha = $('span', style: 'color: #CC0000;')
@@ -287,6 +287,36 @@ class NoticiasScraperJob {
 						noticia.fechaReal = dateFormat.parse(fecha.text())
 					}catch(Exception ex){
 						log.info 'No hemos podido obtener la fecha para la noticia de basketme: '+noticia.url
+						noticia.fechaReal = noticia.fechaDeteccion
+					}
+		
+				if(noticia.titulo)
+				{
+					noticia.save(flush:true)
+					log.info "Noticia ${noticia.url} actualizada"
+				}
+				else{
+					noticia.delete(flush:true)
+					IgnoreURL ignore = new IgnoreURL(url: noticia.url).save(flush:true)
+					log.info "Noticia ${noticia.url} eliminada, parece que ya no existe o no es una noticia. La metemos en Ignores"
+				}
+			}
+		}
+		
+		def noticiasNuevasNbaManiacs = Noticia.findAllWhere(paginaWeb:'NbaManiacs', fechaReal:null)
+		noticiasNuevasNbaManiacs.each { noticia ->
+			Browser.drive {
+				SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMMM yyyy - HH:mm", new Locale("ES","es"))
+				go "${noticia.url}"
+				noticia.titulo = $('h1.xxlarge').text()
+		
+		
+				def postmetadata = $('.postmetadata').text().split('/')
+					try{
+						noticia.fechaReal = dateFormat.parse(postmetadata[1].trim())
+					}catch(Exception ex){
+						log.info 'No hemos podido obtener la fecha para la noticia de nba maniacs: '+noticia.url
+						log.info 'Fecha: '+postmetadata[1]
 						noticia.fechaReal = noticia.fechaDeteccion
 					}
 		
