@@ -61,6 +61,7 @@
 					<button type="button" class="btn btn-filter btn-block btn-primary" data-filter=".Basketme">BasketMe</button>
 					<button type="button" class="btn btn-filter btn-block btn-primary" data-filter=".Eurosport">Eurosport</button>
 					<button type="button" class="btn btn-filter btn-block btn-primary" data-filter=".Marca">Marca</button>
+					<button type="button" class="btn btn-filter btn-block btn-primary" data-filter=".NbaManiacs">NBA Maniacs</button>
 					<button type="button" class="btn btn-filter btn-block btn-primary" data-filter=".Piratas">Piratas</button>
 					<button type="button" class="btn btn-filter btn-block btn-primary"  data-filter=".Solobasket">Solobasket</button>
 					<button type="button" class="btn btn-filter btn-block btn-primary" data-filter=".Terra">Terra</button>

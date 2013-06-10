@@ -28,33 +28,33 @@
 		tagCloud[${i}]['num']= ${tag['repeticiones']};
 		</g:each>
 
-	var dataLeidas = {labels : ["TuBasket","BasketMe","Terra","Eurosport","ACB.com","Solobasket","Marca","Adecco Oro", "Piratas"],
+	var dataLeidas = {labels : ["TuBasket","BasketMe","Terra","Eurosport","ACB.com","Solobasket","Marca","Adecco Oro", "Piratas", "NBA Maniacs"],
 		datasets : [
 			{
 				fillColor : "rgba(5,96,242,0.5)",
 				strokeColor : "rgba(220,220,220,1)",
-				data : [leidas['TuBasket'],leidas['Basketme'],leidas['Terra'],leidas['Eurosport'],leidas['ACB'],leidas['Solobasket'],leidas['Marca'],leidas['AdeccoOro'],leidas['Piratas']]
+				data : [leidas['TuBasket'],leidas['Basketme'],leidas['Terra'],leidas['Eurosport'],leidas['ACB'],leidas['Solobasket'],leidas['Marca'],leidas['AdeccoOro'],leidas['Piratas'], leidas['NbaManiacs']]
 			}
 		]
 	}
 
 
-	var dataNumNotis = {labels : ["TuBasket","BasketMe","Terra","Eurosport","ACB.com","Solobasket","Marca","Adecco Oro", "Piratas"],
+	var dataNumNotis = {labels : ["TuBasket","BasketMe","Terra","Eurosport","ACB.com","Solobasket","Marca","Adecco Oro", "Piratas", "NBA Maniacs"],
 		datasets : [
 			{
 				fillColor : "rgba(5,96,242,0.5)",
 				strokeColor : "rgba(220,220,220,1)",
-				data : [numNotis['TuBasket'],numNotis['Basketme'],numNotis['Terra'],numNotis['Eurosport'],numNotis['ACB'],numNotis['Solobasket'],numNotis['Marca'],numNotis['AdeccoOro'],numNotis['Piratas']]
+				data : [numNotis['TuBasket'],numNotis['Basketme'],numNotis['Terra'],numNotis['Eurosport'],numNotis['ACB'],numNotis['Solobasket'],numNotis['Marca'],numNotis['AdeccoOro'],numNotis['Piratas'], numNotis['NbaManiacs']]
 			}
 		]
 	}
 
-	var dataLeidasPorNum = {labels : ["TuBasket","BasketMe","Terra","Eurosport","ACB.com","Solobasket","Marca","Adecco Oro", "Piratas"],
+	var dataLeidasPorNum = {labels : ["TuBasket","BasketMe","Terra","Eurosport","ACB.com","Solobasket","Marca","Adecco Oro", "Piratas", "NBA Maniacs"],
 			datasets : [
 				{
 					fillColor : "rgba(5,96,242,0.5)",
 					strokeColor : "rgba(220,220,220,1)",
-					data : [lediasPorNumero['TuBasket'],lediasPorNumero['Basketme'],lediasPorNumero['Terra'],lediasPorNumero['Eurosport'],lediasPorNumero['ACB'],lediasPorNumero['Solobasket'],lediasPorNumero['Marca'],lediasPorNumero['AdeccoOro'],lediasPorNumero['Piratas']]
+					data : [lediasPorNumero['TuBasket'],lediasPorNumero['Basketme'],lediasPorNumero['Terra'],lediasPorNumero['Eurosport'],lediasPorNumero['ACB'],lediasPorNumero['Solobasket'],lediasPorNumero['Marca'],lediasPorNumero['AdeccoOro'],lediasPorNumero['Piratas'], lediasPorNumero['NbaManiacs']]
 				}
 			]
 		}
