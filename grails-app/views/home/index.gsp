@@ -24,6 +24,7 @@
 <body>
 	<div class="row">
 		<div class="span2">
+			
 		</div>
 		<div class="span10">
 		<div class="trendsMenu">
@@ -35,12 +36,28 @@
 	</div>
 	<div class="row center">
 		<div class="span2">
-		
+			<div class="input-append">
+			  <input class="span2" id="appendedInputButton" type="text">
+			  <button class="btn" type="button"><i class="icon-search"></i></button>
+			</div>
 		</div>
 		<div class="span10">
-		
-		<g:paginate action="index" total="${noticiasCount}" next="Siguiente" prev="Anterior"/>
-		</div>
+	
+				<div id="filters" data-toggle="buttons-radio" class="btn-group " >
+					<button type="button" class="btn btn-filter btn-primary" data-filter="*">Todas</button>
+					<button type="button" class="btn btn-filter btn-primary" data-filter=".ACB">ACB.com</button>
+					<button type="button" class="btn btn-filter btn-primary" data-filter=".AdeccoOro">AdeccoOro</button>
+					<button type="button" class="btn btn-filter btn-primary" data-filter=".Basketme">BasketMe</button>
+					<button type="button" class="btn btn-filter btn-primary" data-filter=".Eurosport">Eurosport</button>
+					<button type="button" class="btn btn-filter btn-primary" data-filter=".Marca">Marca</button>
+					<button type="button" class="btn btn-filter btn-primary" data-filter=".NbaManiacs">NBA Maniacs</button>
+					<button type="button" class="btn btn-filter btn-primary" data-filter=".Piratas">Piratas</button>
+					<button type="button" class="btn btn-filter btn-primary"  data-filter=".Solobasket">Solobasket</button>
+					<button type="button" class="btn btn-filter btn-primary" data-filter=".Terra">Terra</button>
+					<button type="button" class="btn btn-filter btn-primary"  data-filter=".TuBasket">TuBasket</button>
+				</div>
+			</div>
+
 	</div>
 	<!-- <div class="form-search">
 		  <input type="text" class="input-medium search-query"  id="search" name="search" placeholder="Busca noticias..." >
@@ -49,25 +66,8 @@
 		 -->	
 	<div class="row">
 		<div class="span2">
-			<div class="input-append">
-			  <input class="span2" id="appendedInputButton" type="text">
-			  <button class="btn" type="button"><i class="icon-search"></i></button>
-			</div>
-			<div class="well">
-				<div id="filters" data-toggle="buttons-radio">
-					<button type="button" class="btn btn-block btn-filter  btn-primary" data-filter="*">Todas</button>
-					<button type="button" class="btn btn-block btn-filter btn-block btn-primary" data-filter=".ACB">ACB.com</button>
-					<button type="button" class="btn btn-filter btn-block btn-primary" data-filter=".AdeccoOro">AdeccoOro</button>
-					<button type="button" class="btn btn-filter btn-block btn-primary" data-filter=".Basketme">BasketMe</button>
-					<button type="button" class="btn btn-filter btn-block btn-primary" data-filter=".Eurosport">Eurosport</button>
-					<button type="button" class="btn btn-filter btn-block btn-primary" data-filter=".Marca">Marca</button>
-					<button type="button" class="btn btn-filter btn-block btn-primary" data-filter=".NbaManiacs">NBA Maniacs</button>
-					<button type="button" class="btn btn-filter btn-block btn-primary" data-filter=".Piratas">Piratas</button>
-					<button type="button" class="btn btn-filter btn-block btn-primary"  data-filter=".Solobasket">Solobasket</button>
-					<button type="button" class="btn btn-filter btn-block btn-primary" data-filter=".Terra">Terra</button>
-					<button type="button" class="btn btn-filter btn-block btn-primary"  data-filter=".TuBasket">TuBasket</button>
-				</div>
-			</div>
+			
+			
 		</div>
 		<div class="span10">
 		<div id="news">
@@ -102,7 +102,14 @@
 		</div>
 		</div>
 	</div>
-	
+	<div class="row center">
+		<div class="span2">
+		
+		</div>
+		<div class="span10">
+		<g:paginate action="index" total="${noticiasCount}" next="Siguiente" prev="Anterior"/>
+		</div>
+	</div>
 	<div class="modal hide fade" id="myModal" role="dialog">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal"

@@ -17,7 +17,7 @@ class HomeController {
 			noticias = Noticia.findAllWhere(tags: params.tag)
 		}
 		else{
-			params.max = Math.min(params.max ? params.int('max') : 100, 100)
+			params.max = Math.min(params.max ? params.int('max') : 50, 50)
 			noticias = Noticia.list(params)
 		}
 		

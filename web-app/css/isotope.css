@@ -944,6 +944,9 @@ body{
 .center{
 	text-align: center;
 }
+#filters{
+	margin-left: -45px;
+}
 .basket-ribbon a::before,.basket-ribbon a::after {
 	content: "";
 	width: 100%;
