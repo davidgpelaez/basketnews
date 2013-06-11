@@ -74,9 +74,15 @@
 
 			<g:each in="${noticias}">
 				<div class="element ${it.paginaWeb}"  data-web="${it.paginaWeb}">
+				
 				<span class="favIcon"><a class="btn btn-mini" href="#"><i class="icon-star"></i></a></span>	
 				<span class="leido">Leído ${it.hits?:0} veces</span>
-				
+				<span class="shareWith">Share on 
+				<span class='st_facebook' st_title="${it.titulo}" st_url="${it.url}"></span>
+				<span class='st_twitter' st_title="${it.titulo}"  st_url="${it.url}"></span>
+				<span class='st_email'st_title="${it.titulo}"  st_url="${it.url}"></span>
+				</span>
+				<small class="fechaNoticia"><g:formatDate format="dd-MM-yyyy HH:mm:ss" date="${it.fechaReal}"/></small>
 					<span class="basket-ribbon ${it.paginaWeb}-ribbon"><a href="#">${it.paginaWeb}</a></span>
 					<g:link url="${it.url}" class="enlaceNoticia" target="_blank"> 
 						<h2 class="tituloNoticia">
@@ -84,7 +90,6 @@
 						</h2>
 					</g:link>
 				
-				<small class="fechaNoticia"><g:formatDate format="dd-MM-yyyy HH:mm:ss" date="${it.fechaReal}"/></small>
 				<div class="tagsNoticia">
 					Tags: 
 					<g:each in="${it.tags}" var="tag">

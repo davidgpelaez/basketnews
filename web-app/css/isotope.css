@@ -936,6 +936,11 @@ body{
 	top:0;
 	left:40px;
 }
+.shareWith{
+	position:absolute;
+	bottom:0;
+	left:0;
+}
 .center{
 	text-align: center;
 }

@@ -45,6 +45,9 @@
 	var urlPath = "${ grailsApplication.config.grails.serverURL}"; 
 	</script>
 	<g:layoutHead />
+	<script type="text/javascript">var switchTo5x=true;</script>
+	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript">stLight.options({publisher: "5e0b4b18-ff95-49d6-ac73-c470948646ed", doNotHash: false, doNotCopy: false, hashAddressBar: true});</script>
 	</head>
 	<body>
 	
