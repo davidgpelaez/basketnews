@@ -33,7 +33,7 @@ class AgruparNoticiasJob {
 		
 	]
 	
-	def IGNORE_WORDS = ['Este','Le', 'Si', 'Más', 'Nunca','De', 'Que','Al', 'Se', 'Sé', 'Con', 'Del', 'Su', 'En', 'Ya','Basket', 'Gran', 'Oficial', 'Mi', 'Cuando', 'Por','Para','A','No','Un', 'Uno', 'Una', 'Unos', 'Unas', 'Lo', 'El', 'La', 'Los', 'Las', 'Y', 'Es', 'Son', 'Sin', 'Real', 'Hay', 'LA','PRENSA', 'DICE']
+	def IGNORE_WORDS = ['Uno','Dos','Tres','Tras','Siento','Me','Quedan','Este','Le', 'Si', 'Más', 'Nunca','De', 'Que','Al', 'Se', 'Sé', 'Con', 'Del', 'Su', 'En', 'Ya','Basket', 'Gran', 'Oficial', 'Mi', 'Cuando', 'Por','Para','A','No','Un', 'Uno', 'Una', 'Unos', 'Unas', 'Lo', 'El', 'La', 'Los', 'Las', 'Y', 'Es', 'Son', 'Sin', 'Real', 'Hay', 'LA','PRENSA', 'DICE']
 
 	def execute() {
 		
@@ -52,10 +52,19 @@ class AgruparNoticiasJob {
 			tituloSplitted = tituloSplitted.collect{
 				it.replaceAll("[\\.|'|,|:|\"|\\?]", "")
 			}
-			
-			def tags = tituloSplitted.findAll {
-				(it && Character.isUpperCase(it.charAt(0)) && isImportantWord(it)) || isTag(it)
+			def tags =[]
+			if('Piratas'.equals(noticia.paginaWeb))
+			{
+				tags = tituloSplitted.findAll {
+					(it && Character.isUpperCase(it.charAt(0)) && isImportantWord(it)) || isTag(it)
 				
+				}
+			}
+			else{
+				tags = tituloSplitted.findAll {
+					(it && Character.isUpperCase(it.charAt(0)) && isImportantWord(it))
+				
+				}
 			}
 			noticia.tags = tags.collect {
 				it.capitalize()
