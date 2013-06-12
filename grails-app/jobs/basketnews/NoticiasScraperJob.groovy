@@ -84,7 +84,7 @@ class NoticiasScraperJob {
 				
 				}
 
-				if(noticia.titulo)
+				if(noticia.titulo && !Noticia.findByTitulo(noticia.titulo))
 				{
 					noticia.save(flush:true)
 					log.info "Noticia ${noticia.url} actualizada"

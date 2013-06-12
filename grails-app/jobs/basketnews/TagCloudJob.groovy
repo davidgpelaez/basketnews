@@ -16,7 +16,7 @@ class TagCloudJob {
       // Buscar noticias de los últimos dos días, sacar palabras clave, buscar candidatos y agrupar
 		def db = mongo.getDB('basketnews')
 	    log.info 'Lets go to calculate tagCloud!'
-		def not = db.noticia.find([fechaReal:[$gte:new Date()-3]],[tags:1,_id:0])
+		def not = db.noticia.find([fechaReal:[$gte:new Date()-2]],[tags:1,_id:0])
 
 		def tagCloud = [:]
 		
