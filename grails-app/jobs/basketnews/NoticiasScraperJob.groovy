@@ -1,18 +1,20 @@
 package basketnews
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
-import javassist.bytecode.stackmap.BasicBlock.Catch;
-
 import geb.Browser
-import basketnews.Noticia
+
+import java.text.SimpleDateFormat
+
+import org.apache.solr.client.solrj.SolrServer
+import org.apache.solr.client.solrj.impl.HttpSolrServer
+import org.apache.solr.client.solrj.response.UpdateResponse;
+import org.apache.solr.common.SolrInputDocument
 
 
 
 class NoticiasScraperJob {
 
+	SolrServer server = new HttpSolrServer("http://localhost:8983/solr/news")
+	
 	def concurrent = false
 	//	def elasticSearchService
 
@@ -36,6 +38,7 @@ class NoticiasScraperJob {
 				noticia.titulo = $('div.tituloreal').text()
 				noticia.subtitulo = $('div.entradillaarticulo').text()
 				noticia.htmlTags = $('meta', 'http-equiv': 'keywords').@content.split(",")
+				noticia.texto = $('.cuerpoarticulo').text()
 				def textoFecha = $(".cuerpoarticulo b").text()
 				try{
 					Date fecha = dateFormat.parse(textoFecha.substring(textoFecha.indexOf(", ")+2, textoFecha.length()-2))
@@ -51,6 +54,7 @@ class NoticiasScraperJob {
 				{
 					noticia.save(flush:true)
 					log.info "Noticia ${noticia.url} actualizada"
+					indexarNoticia(noticia)
 				}
 				else{
 					noticia.delete(flush:true)
@@ -69,7 +73,7 @@ class NoticiasScraperJob {
 				go "${noticia.url}"
 				noticia.titulo = $('article.new-body h1').text()
 				noticia.subtitulo = $('article.new-body div.body').text()
-			//	noticia.htmlTags = $('meta', 'name': 'keywords').@content.split(",")
+			    noticia.texto = $('.body').text()
 
 				try{
 					noticia.fechaReal = dateFormat.parse($('.author span')[0].text()+' - '+$('.author span')[1].text())
@@ -88,6 +92,7 @@ class NoticiasScraperJob {
 				{
 					noticia.save(flush:true)
 					log.info "Noticia ${noticia.url} actualizada"
+					indexarNoticia(noticia)
 				}
 				else{
 					noticia.delete(flush:true)
@@ -105,7 +110,7 @@ class NoticiasScraperJob {
 				go "${noticia.url}"
 				noticia.titulo = $('h1.title').text()
 				noticia.subtitulo = $('.content-summary li').text()
-					
+				noticia.texto = $('.story-content').text()
 				try{
 					noticia.fechaReal = dateFormat.parse($('.date-display-single').text())
 				}catch(Exception ex){
@@ -116,6 +121,7 @@ class NoticiasScraperJob {
 				{
 					noticia.save(flush:true)
 					log.info "Noticia ${noticia.url} actualizada"
+					indexarNoticia(noticia)
 				}
 				else{
 					noticia.delete(flush:true)
@@ -134,6 +140,7 @@ class NoticiasScraperJob {
 				go "${noticia.url}"
 				noticia.titulo = $('div.cab_articulo h1').text()
 				noticia.subtitulo = $('li h4').text()
+				noticia.texto = $('.cuerpo_articulo').text()
 				try{
 					noticia.fechaReal = dateFormat.parse($('.fecha').text())
 				}catch(Exception exc){
@@ -147,6 +154,7 @@ class NoticiasScraperJob {
 				{
 					noticia.save(flush:true)
 					log.info "Noticia ${noticia.url} actualizada"
+					indexarNoticia(noticia)
 				}
 				else{
 					noticia.delete(flush:true)
@@ -163,6 +171,7 @@ class NoticiasScraperJob {
 				go "${noticia.url}"
 				noticia.titulo = $('h1.titulo').text()
 				noticia.subtitulo = $('div.entradilla').text()
+				noticia.texto = $('.cuerpo').text()
 				//TODO solo tenemos día, no hora...
 				if(isFirst){
 					noticia.fechaReal = noticia.fechaDeteccion-1
@@ -175,6 +184,7 @@ class NoticiasScraperJob {
 				{
 					noticia.save(flush:true)
 					log.info "Noticia ${noticia.url} actualizada"
+					indexarNoticia(noticia)
 				}
 				else{
 					noticia.delete(flush:true)
@@ -193,6 +203,7 @@ class NoticiasScraperJob {
 				def textoFecha = $('span.createdate').text()
 				noticia.titulo = $('h2.contentheading a').text().toLowerCase().capitalize()
 				noticia.subtitulo = $('div.article-content b').text()
+				noticia.texto = $('.article-content').text()
 				try{
 					noticia.fechaReal = dateFormat.parse(textoFecha.substring(textoFecha.indexOf(", ")+2, textoFecha.length()))
 				}catch(Exception ex){
@@ -203,6 +214,7 @@ class NoticiasScraperJob {
 				{
 					noticia.save(flush:true)
 					log.info "Noticia ${noticia.url} actualizada"
+					indexarNoticia(noticia)
 				}
 				else{
 					noticia.delete(flush:true)
@@ -220,6 +232,7 @@ class NoticiasScraperJob {
 				go "${noticia.url}"
 				noticia.titulo = $('h2.ttl-main').text()
 				noticia.subtitulo = $('h2.description').text()
+				noticia.texto = $('#news-container').text()
 				try{
 					def fecha = $('time')[0].text()+' - '+$('time')[1].text()
 					noticia.fechaReal = dateFormat.parse(fecha)
@@ -232,6 +245,7 @@ class NoticiasScraperJob {
 				{
 					noticia.save(flush:true)
 					log.info "Noticia ${noticia.url} actualizada"
+					indexarNoticia(noticia)
 				}
 				else{
 					noticia.delete(flush:true)
@@ -248,6 +262,7 @@ class NoticiasScraperJob {
 				go "${noticia.url}"
 				noticia.titulo = $('h1.headline').text()
 				noticia.subtitulo = $('h2.subheadline').text()
+				noticia.texto = $('#mediaarticlebody').text()
 				try{
 					log.info $('abbr')
 					noticia.fechaReal = dateFormat.parse($('abbr').text())
@@ -266,6 +281,7 @@ class NoticiasScraperJob {
 				{
 					noticia.save(flush:true)
 					log.info "Noticia ${noticia.url} actualizada"
+					indexarNoticia(noticia)
 				}
 				else{
 					noticia.delete(flush:true)
@@ -281,6 +297,7 @@ class NoticiasScraperJob {
 				go "${noticia.url}"
 				
 				noticia.subtitulo = $('h2.subheadline').text()
+				noticia.texto = $('.noticia').text()
 				//Infierno de html...
 				def fecha = $('span', style: 'color: #CC0000;')
 					try{				
@@ -294,6 +311,7 @@ class NoticiasScraperJob {
 				{
 					noticia.save(flush:true)
 					log.info "Noticia ${noticia.url} actualizada"
+					indexarNoticia(noticia)
 				}
 				else{
 					noticia.delete(flush:true)
@@ -324,6 +342,7 @@ class NoticiasScraperJob {
 				{
 					noticia.save(flush:true)
 					log.info "Noticia ${noticia.url} actualizada"
+					indexarNoticia(noticia)
 				}
 				else{
 					noticia.delete(flush:true)
@@ -333,28 +352,28 @@ class NoticiasScraperJob {
 			}
 		}
 
-		def noticiasNuevasGigantes = Noticia.findAllWhere(paginaWeb:'Gigantes', titulo:null)
-		noticiasNuevasGigantes.each { noticia ->
-			Browser.drive {
-
-				go "${noticia.url}"
-				noticia.titulo = $('h1.titulo a').text()
-				//   noticia.subtitulo = $('div.new-body div.body').text()
-				//  noticia.tags = $('meta', 'http-equiv': 'keywords').@content.split(",")
-
-				if(noticia.titulo)
-				{
-					noticia.save(flush:true)
-					log.info "Noticia ${noticia.url} actualizada"
-				}
-				else{
-					noticia.delete(flush:true)
-					IgnoreURL ignore = new IgnoreURL(url: noticia.url).save(flush:true)
-					log.info "Noticia ${noticia.url} eliminada, parece que ya no existe o no es una noticia. La metemos en Ignores"
-				}
-			}
-		}
+	
 		isFirst = false
 		log.info 'Scraper - Escaneo finalizado'
+	}
+	
+	
+	def indexarNoticia = { Noticia noticia ->
+		try{
+			SolrInputDocument doc = new SolrInputDocument()
+			doc.addField("titulo", noticia.titulo)
+			doc.addField("url", noticia.url)
+			doc.addField("id", noticia.id)
+			doc.addField("texto", noticia.texto)
+			UpdateResponse resp = server.add(doc)
+			
+			server.commit()
+			noticia.indexed=true
+			noticia.save(flush:true)
+			log.info "Noticia indexada en Solr, respuesta: ${resp.status}"
+		}
+		catch(Exception ex){
+			log.error "Error indexando en Solr!!!", ex
+		}
 	}
 }

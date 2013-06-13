@@ -14,6 +14,7 @@ class Noticia {
 	Date fechaDeteccion
 	Date fechaReal
 	Integer hits
+	Boolean indexed
 	
     static constraints = {
 		titulo nullable: true
@@ -23,6 +24,7 @@ class Noticia {
 		texto nullable:true
 		hits nullable:true 
 		fechaReal nullable:true
+		indexed nullable:true
     }
 	
 	static mapping = {

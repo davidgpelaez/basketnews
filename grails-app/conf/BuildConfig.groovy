@@ -1,4 +1,4 @@
-grails.servlet.version = "3.0" // Change depending on target container compliance (2.5 or 3.0)
+grails.servlet.version = "2.5" // Change depending on target container compliance (2.5 or 3.0)
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
@@ -43,9 +43,6 @@ grails.project.dependency.resolution = {
 		}
 		compile("org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion")
 		compile("org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion")
-		
-		runtime "org.elasticsearch:elasticsearch:0.90.0"
-        runtime "org.elasticsearch:elasticsearch-lang-groovy:1.4.0"
 
 		runtime "org.apache.solr:solr-solrj:4.3.0"
     }
@@ -59,8 +56,6 @@ grails.project.dependency.resolution = {
         //runtime ":yui-minify-resources:0.1.4"
 
         build ":tomcat:$grailsVersion"
-
-        runtime ":database-migration:1.1"
 
         compile ':cache:1.0.0'
 		

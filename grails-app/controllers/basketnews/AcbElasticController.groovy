@@ -1,7 +1,5 @@
 package basketnews
 
-import static org.elasticsearch.groovy.node.GNodeBuilder.*
-
 import org.apache.solr.client.solrj.SolrServer
 import org.apache.solr.client.solrj.impl.HttpSolrServer
 import org.apache.solr.common.SolrInputDocument
