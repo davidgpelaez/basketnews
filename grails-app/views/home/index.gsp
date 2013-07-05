@@ -5,7 +5,7 @@
 
 <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <meta name="layout" content="main" />
-<title>Welcome to BasketNews</title>
+<title>Noticias de basket</title>
 <link rel="stylesheet" href="${ grailsApplication.config.grails.serverURL}/css/jqcloud.css" />
 <link rel="stylesheet" href="${ grailsApplication.config.grails.serverURL}/css/isotope.css" />
  <script type="text/javascript">

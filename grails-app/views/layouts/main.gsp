@@ -8,7 +8,7 @@
 		type="image/x-icon">
 	
 	
-	<title>Basket News</title>
+	<title>noticias de basket</title>
 	<link href="${ grailsApplication.config.grails.serverURL}/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -60,7 +60,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <g:link class="brand"  absolute="true" controller="home">BasketNews</g:link>
+          <g:link class="brand"  absolute="true" controller="home">NoticiasDeBasket.com</g:link>
          
 	<!-- 
 				<div class="btn-group ">
