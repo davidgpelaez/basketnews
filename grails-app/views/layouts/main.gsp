@@ -50,7 +50,16 @@
 	<script type="text/javascript">stLight.options({publisher: "5e0b4b18-ff95-49d6-ac73-c470948646ed", doNotHash: false, doNotCopy: false, hashAddressBar: true});</script>
 	</head>
 	<body>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 	
+	  ga('create', 'UA-42268512-1', 'noticiasdebasket.com');
+	  ga('send', 'pageview');
+	
+	</script>
 	<div id="wrap">
 	<div class="navbar navbar-inverse navbar-fixed-top navbar-basketnews">
       <div class="navbar-inner">
@@ -106,4 +115,5 @@
     </div>
 
 	</body>
+
 </html>
