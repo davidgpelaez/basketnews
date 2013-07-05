@@ -62,7 +62,7 @@
           </button>
           <g:link class="brand"  absolute="true" controller="home">BasketNews</g:link>
          
-
+	<!-- 
 				<div class="btn-group ">
 				   <g:link class="btn btn-primary" absolute="true" controller="home">Noticias</g:link>
 					<button class="btn dropdown-toggle btn-primary" data-toggle="dropdown">
@@ -72,11 +72,13 @@
 						<li><a href="#myModal" role="button" data-toggle="modal">Personalizar</a></li>
 					</ul>
 				</div>
-
+	 -->
 				<div class="btn-group">
 					 <g:link class="btn btn-primary" absolute="true" controller="estadisticas">Estadísticas</g:link>
 				</div>
-				
+				<div class="btn-group">
+					 <g:link class="btn btn-primary" absolute="true" controller="home" action="aboutus">Quienes somos</g:link>
+				</div>
 			
 				
         </div>

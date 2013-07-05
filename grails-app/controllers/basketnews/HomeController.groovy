@@ -31,6 +31,10 @@ class HomeController {
 
 		
 	}
+	
+	def aboutus(){
+		
+	}
 
 
 }
