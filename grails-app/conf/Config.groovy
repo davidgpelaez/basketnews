@@ -66,7 +66,7 @@ environments {
     }
     production {
         grails.logging.jul.usebridge = false
-        grails.serverURL = "http://82.196.10.131"
+        grails.serverURL = "http://www.noticiasdebasket.com"
 
     }
 }

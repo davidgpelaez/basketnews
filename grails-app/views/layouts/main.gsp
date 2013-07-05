@@ -8,7 +8,7 @@
 		type="image/x-icon">
 	
 	
-	<title>noticias de basket</title>
+	<title>NoticiasDeBasket.com</title>
 	<link href="${ grailsApplication.config.grails.serverURL}/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
